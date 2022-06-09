@@ -4,11 +4,14 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
+    "dev-mock": "vite --mode mock",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "element-plus": "^2.2.5",
+    "lodash": "^4.17.21",
     "vue": "^3.2.25",
     "vue-router": "^4.0.15"
   },

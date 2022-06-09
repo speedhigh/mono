@@ -2,7 +2,7 @@
   <div>
     <!-- 轮播图 -->
     <div class="relative">
-      <el-carousel trigger="click" height="540px" indicator-position="none" @change="changeSwiper">
+      <el-carousel ref="swiperRef" trigger="click" height="540px" indicator-position="none" @change="changeSwiper">
         <el-carousel-item v-for="i in 4" :key="i" class="bg-red-200">
           <h3 class="small justify-center text-3xl text-white" text="2xl">{{ i }}</h3>
         </el-carousel-item>
@@ -11,8 +11,9 @@
         <div
           v-for="i in 4"
           :key="i"
-          class="w-12 h-2 rounded-sm"
+          class="w-12 h-2 rounded-sm cursor-pointer"
           :class="active + 1 === i ? 'bg-primary' : 'bg-gray-100 opacity-60'"
+          @click="setActive(i)"
         />
       </div>
     </div>
@@ -60,5 +61,9 @@ import { ref } from 'vue'
 const active = ref(0)
 const changeSwiper = function(index) {
   active.value = index
+}
+const swiperRef = ref()
+const setActive = function(index) {
+  swiperRef.value.setActiveItem(index-1)
 }
 </script>
