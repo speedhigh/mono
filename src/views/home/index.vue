@@ -57,7 +57,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
+import api from '/src/api/index.js'
+// 轮播图相关
 const active = ref(0)
 const changeSwiper = function(index) {
   active.value = index
@@ -66,4 +68,6 @@ const swiperRef = ref()
 const setActive = function(index) {
   swiperRef.value.setActiveItem(index-1)
 }
+
+// 产品相关
 </script>

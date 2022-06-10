@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="$route.meta.breadcrumb"
-    class="w-full h-20 px-[22.5rem] shadow flex items-center"
+    class="w-full h-14 px-[22.5rem] shadow flex items-center"
   >
     <div 
       v-for="(item, index) in $route.meta.breadcrumb" 

@@ -5,15 +5,20 @@
       <div class="ml-auto text-5xl text-gray-200 font-bold">NEWS</div>
       <div class="absolute bottom-0 w-20 h-1.5 bg-primary z-10"></div>
     </div>
-    <div v-for="i in 4" :key="i">
-      <base-news-item :id="i + ''" date="2020年03月13日" title="新型コロナウイルス感染拡大防止のためのカスタマーサポート窓口体制について" />
+    <div v-for="item in newsList" :key="item.id">
+      <base-news-item :id="item.id" :date="item.inserttime" :title="item.title" />
     </div>
     <div class="text-center">
-      <el-button type="primary" class="mt-14 w-60 h-[3.38rem]" size="large">查看全部</el-button>
+      <el-button type="primary" class="mt-14 min-w-[15rem] h-[3.38rem]" size="large" @click="$router.push('/news/list')">查看全部</el-button>
     </div>
   </div>
 </template>
 
 <script setup>
-// import BaseNewsItem from './BaseNewsItem.vue'
+import { ref } from 'vue'
+import api from '/src/api/index.js'
+const newsList = ref([])
+api.get('/index/getArticle').then((res) => {
+  newsList.value = res.data.data
+})
 </script>

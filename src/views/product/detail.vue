@@ -2,17 +2,17 @@
   <main>
     <section class="px-[25.5rem] border-b-[0.5rem] border-b-primary">
       <div class="py-20 flex justify-center space-x-[3.75rem]">
-        <div class="w-[25.13rem] h-[25.13rem] rounded flex-shrink-0 bg-gray-500"></div>
+        <img :src="info.thumbnail" :alt="info.title" width="402" height="402" class="flex-shrink-0 rounded w-[402px] h-[402px]">
         <div class="flex-grow">
-          <div class="w-[8.75rem] h-10 border border-primary rounded leading-9 text-primary text-center">第三類医薬品</div>
-          <h1 class="mt-7 text-[2rem] font-bold">ローヤルゼリー体制改善錠剤</h1>
-          <h3 class="mt-4 text-2xl font-bold">保健製品</h3>
+          <div class="w-[8.75rem] h-10 border border-primary rounded leading-9 text-primary text-center">{{ info.series }}</div>
+          <h1 class="mt-7 text-[2rem] font-bold">{{ info.title }}</h1>
+          <h3 class="mt-4 text-2xl font-bold">{{ info.clazz }}</h3>
           <div class="mt-12">
             <div class="grid grid-cols-2 border-b">
               <div class="col-span-1 bg-gray-100 text-lg text-center leading-[3rem]">単一製品の容量</div>
               <div class="col-span-1 bg-gray-100 text-lg text-center leading-[3rem] border-l border-gray">メーカー</div>
-              <div class="col-span-1 text-lg text-center leading-[3rem]">500mg</div>
-              <div class="col-span-1 text-lg text-center leading-[3rem] border-l border-gray-200">HSD国際株式会社</div>
+              <div class="col-span-1 text-lg text-center leading-[3rem]">{{ info.weight }}</div>
+              <div class="col-span-1 text-lg text-center leading-[3rem] border-l border-gray-200">{{ info.storename }}</div>
             </div>
           </div>
           <div class="mt-12 flex space-x-10">
@@ -32,20 +32,52 @@
         </div>
       </div>
     </section>
+    <!-- 製品詳細 -->
     <section class="px-[22.5rem] py-20">
       <h2 class="text-[2rem] font-bold text-center">製品詳細</h2>
-      <div class="text-lg leading-9 mt-16">
-        ローヤルゼリーは、働きバチの下咽頭および下顎腺から分泌される乳白色のゼラチン状物質で、女王ハチになる幼虫の食糧となります。俗に、「体質を改善する」「免疫力を向上させる」「若々しさを保つ」「血圧を下げる」などと言われています。
-      </div>
+      <div class="text-lg leading-9 mt-16" v-html="info.content"></div>
     </section>
-    <section class="p-[5.63rem] flex justify-around bg-gray-100">
-      <div v-for="i in 5" :key="i" class="w-[18.75rem] h-[23.13rem] p-5 bg-white shadow-md rounded-[1.25rem] cursor-pointer">
-        <div class="w-full h-[16.25rem] bg-gray-300 rounded"></div>
-        <h3 class="mt-7 text-2xl font-bold text-center">HMB代謝錠剤</h3>
+    <!-- その他の類似製品 -->
+    <section class="p-[5.63rem] bg-gray-100">
+      <h2 class="text-[2rem] font-bold text-center">その他の類似製品</h2>
+      <div class="mt-14 flex justify-center space-x-[3.75rem]">
+        <div 
+          v-for="item in otherList" 
+          :key="item.id" 
+          class="w-[18.75rem] h-[23.13rem] p-5 bg-white shadow-md rounded-[1.25rem] cursor-pointer"
+          @click="changeOther(item.id)"
+        >
+          <!-- <div class="w-full h-[16.25rem] bg-gray-300 rounded"></div> -->
+          <img :src="item.thumbnail" width="260" height="260" :alt="item.title" class="w-[16.25rem] h-[16.25rem] rounded">
+          <h3 class="mt-7 text-2xl font-bold text-center">{{ item.title }}</h3>
+        </div>
       </div>
     </section>
   </main>
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import api from '/src/api/index.js'
+import { useRoute, useRouter } from 'vue-router'
+const route = useRoute()
+const router = useRouter()
+
+const info = ref({})
+const otherList = ref([])
+const getData = (id) => {
+  api.get('/product/getDetail', { id: id}).then((res) => {
+    Object.assign(info.value, res.data.data)
+    api.get('/product/getTuiJian', { clazz: res.data.data.clazz }).then((res) => {
+      otherList.value = res.data.data
+    })
+  })
+}
+getData(route.params.id)
+const changeOther = (id) => {
+  router.push('/product/detail/' + id)
+  getData(id)
+  window.scrollTo({ top: 0, behavior: "instant" })
+}
+
 </script>

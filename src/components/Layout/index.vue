@@ -1,7 +1,7 @@
 <template>
   <div 
     class="relative text-gray-900 text-base pb-[188px] leading-none min-h-screen flex flex-col justify-between"
-    :class="$route.meta.breadcrumb ? 'pt-[180px]' : 'pt-[100px]'"  
+    :class="$route.meta.breadcrumb ? 'pt-[156px]' : 'pt-[100px]'"  
   >
     <!-- header -->
     <layout-header />

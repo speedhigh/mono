@@ -1,5 +1,5 @@
 <template>
-  <div v-loading="loading" class="w-full text-center">
+  <div class="w-full text-center">
     <slot v-if="localList.length > 0" :list="localList" />
     <el-empty 
       v-if="localList.length === 0 && !loading" 
@@ -27,6 +27,7 @@
 import { ref, watch } from 'vue'
 import { pickBy } from 'lodash'
 import api from '/src/api/index.js'
+import emitter from '/src/until/eventbus'
 export default {
   props: {
     size: {
@@ -44,11 +45,13 @@ export default {
   },
   setup(props) {
     const loading = ref(true)
+    emitter.emit('changeLoadingState', true)
     const currentPage = ref(1)
     const localList = ref([])
     const total = ref(0)
     const askApi = function(more = true) {
       loading.value = true
+      emitter.emit('changeLoadingState', true)
       let newParams = {}
       if(!more) {
         currentPage.value = 1
@@ -64,20 +67,15 @@ export default {
           localList.value = []
         }
         loading.value = false
+        emitter.emit('changeLoadingState', false)
       })
     }
     askApi()
-    watch(props.params, (value) => {
+    watch(() => props.params, (value) => {
       console.log('params',value)
       askApi(false)
     }, {
       deep: true
-    })
-    watch(() => props.size, value => {
-      askApi()
-    })
-    watch(() => props.url, value => {
-      askApi()
     })
     return {
       loading,

@@ -28,18 +28,19 @@
           class="menu-item flex items-center space-x-0.5"
           :class="{'text-blue-400' : isActive.product, 'menu-item-active': $route.meta.name === 'Product'}"
           @mouseenter="isActive.product = true"
-          @click="isActive.product = !isActive.product"
+          @click="$router.push('/product/list'); isActive.product = !isActive.product"
         >
           <p>产品信息</p>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" :class="{'transition duration-200 rotate-180' : isActive.product}" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
           </svg>
         </div>
-        <div 
+        <div
           v-if="isActive.product"
-          class="absolute top-[100px] w-full bg-[rgba(255,255,255,0.6)] backdrop-blur-md shadow rounded-b-md inset-x-0 py-10 leading-none flex justify-center space-x-32"
+          class="absolute top-[100px] bg-[rgba(255,255,255,0.6)] backdrop-blur-md shadow rounded-b-md inset-x-0 py-10 leading-none flex justify-center space-x-32"
           @mouseenter="isActive.product = true"
         >
+          <!-- 精确搜索 -->
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
@@ -49,7 +50,8 @@
               v-model="searchValue"
               placeholder="输入产品名称或关键字"
               class="mt-5 w-[16.25rem] h-9"
-              @keyup.enter.native="jumpTo('/product')"
+              clearable
+              @keyup.enter.native="jumpTo('/product/list?keyword=' + searchValue)"
             >
               <template #suffix>
                 <el-icon 
@@ -57,25 +59,31 @@
                   :color="isActive.search ? '#1f2937' : '#9ca3af'"
                   @mouseenter="isActive.search = true"
                   @mouseleave="isActive.search = false"
-                  @click="jumpTo('/product')"
+                  @click="jumpTo('/product/list?keyword=' + searchValue)"
                 >
                   <search />
                 </el-icon>
               </template>
             </el-input>
           </div>
+          <!-- 按类别搜索 -->
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-5 w-5 text-primary" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
             </svg>
             <h3 class="ml-2 mt-2.5 font-bold">按类别搜索</h3>
-            <div class="mt-4 columns-2 space-y-1 text-sm gap-x-12">
-              <p
-                v-for="item in typeList"
-                class="leading-7 text-gray-600 cursor-pointer hover:text-white hover:bg-primary active:bg-blue-400 rounded px-2"
-              >
-                {{ item }}
-              </p>
+            <div class="mt-4 flex items-start space-x-14">
+              <div v-for="(item, index) in seriesList" :key="index" class="flex flex-col flex-wrap h-60 flex-shrink-0">
+                <div 
+                  v-for="(tag, i) in item.seriesnames"
+                  :key="i"
+                  class="leading-7 cursor-pointer hover:text-white hover:bg-primary active:bg-blue-400 rounded px-2 mb-2 flex-shrink-0 mr-2 text-center"
+                  :class="$route.query.clazzname === item.clazzname && $route.query.seriesname === tag ? 'text-white bg-primary' : 'text-gray-600'"
+                  @click="$router.push('/product/list?clazzname=' + item.clazzname + '&seriesname=' + tag); isActive.product = false"
+                >
+                  {{ tag }}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -141,7 +149,9 @@
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { Search } from '@element-plus/icons-vue'
+import api from '/src/api/index.js'
 import logoImg from '/src/assets/images/logo.png'
+
 const router = useRouter()
 // 点击导航栏跳转
 const jumpTo = (url) => {
@@ -156,7 +166,10 @@ const isActive = reactive({
 })
 // 产品信息
 const searchValue = ref('')
-const typeList = ref(['预防生活习惯病系列','减肥系列','滋养、强壮系列','改善肝功能系列','改善骨骼、关节系列','护眼系列','美肌系列', '增强免疫力系列', '促进血液循环系列', '改善睡眠系列'])
+const seriesList = ref([])
+api.get('/product/getClazz').then((res) => {
+  seriesList.value = res.data.data
+})
 // 设置多语言
 const languageDef = ref('zh')
 const language = ref([

@@ -6,6 +6,6 @@ const changeDate = function(d) {
   return YYYY + '-' + MM + '-' + DD
 }
 
-export default { 
+export { 
   changeDate
 }
