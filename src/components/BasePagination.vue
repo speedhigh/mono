@@ -16,8 +16,6 @@
         layout="prev, pager, next, jumper"
         :total="total"
         class="mt-12"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
       />
     </div>
   </div>
@@ -27,7 +25,7 @@
 import { ref, watch } from 'vue'
 import { pickBy } from 'lodash'
 import api from '/src/api/index.js'
-import emitter from '/src/until/eventbus'
+// import emitter from '/src/until/eventbus'
 export default {
   props: {
     size: {
@@ -45,20 +43,19 @@ export default {
   },
   setup(props) {
     const loading = ref(true)
-    emitter.emit('changeLoadingState', true)
+    // emitter.emit('changeLoadingState', true)
     const currentPage = ref(1)
     const localList = ref([])
     const total = ref(0)
     const askApi = function(more = true) {
       loading.value = true
-      emitter.emit('changeLoadingState', true)
+      // emitter.emit('changeLoadingState', true)
       let newParams = {}
       if(!more) {
         currentPage.value = 1
       }
       Object.assign(newParams, props.params, { currentPage: currentPage.value, size: props.size })
       api.get(props.url, pickBy(newParams)).then((res) => {
-        console.log('data', res)
         if(res.data.code === 20000) {
           total.value = res.data.data.total
           localList.value = res.data.data.records
@@ -67,12 +64,11 @@ export default {
           localList.value = []
         }
         loading.value = false
-        emitter.emit('changeLoadingState', false)
+        // emitter.emit('changeLoadingState', false)
       })
     }
     askApi()
     watch(() => props.params, (value) => {
-      console.log('params',value)
       askApi(false)
     }, {
       deep: true
@@ -82,13 +78,7 @@ export default {
       currentPage,
       localList,
       total,
-      askApi,
-      handleSizeChange(value) {
-        console.log(value)
-      },
-      handleCurrentChange(page) {
-        askApi()
-      }
+      askApi
     }
   }
 }

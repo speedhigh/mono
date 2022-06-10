@@ -24,7 +24,7 @@
       </div>
       <!-- 产品信息 -->
       <div>
-        <div 
+        <div
           class="menu-item flex items-center space-x-0.5"
           :class="{'text-blue-400' : isActive.product, 'menu-item-active': $route.meta.name === 'Product'}"
           @mouseenter="isActive.product = true"
@@ -50,11 +50,10 @@
               v-model="searchValue"
               placeholder="输入产品名称或关键字"
               class="mt-5 w-[16.25rem] h-9"
-              clearable
               @keyup.enter.native="jumpTo('/product/list?keyword=' + searchValue)"
             >
               <template #suffix>
-                <el-icon 
+                <el-icon
                   class="el-input__icon cursor-pointer rounded-xl"
                   :color="isActive.search ? '#1f2937' : '#9ca3af'"
                   @mouseenter="isActive.search = true"
@@ -73,8 +72,12 @@
             </svg>
             <h3 class="ml-2 mt-2.5 font-bold">按类别搜索</h3>
             <div class="mt-4 flex items-start space-x-14">
-              <div v-for="(item, index) in seriesList" :key="index" class="flex flex-col flex-wrap h-60 flex-shrink-0">
-                <div 
+              <div 
+                v-for="(item, index) in seriesList" 
+                :key="index" 
+                class="flex flex-col flex-wrap h-60 flex-shrink-0"
+              >
+                <div
                   v-for="(tag, i) in item.seriesnames"
                   :key="i"
                   class="leading-7 cursor-pointer hover:text-white hover:bg-primary active:bg-blue-400 rounded px-2 mb-2 flex-shrink-0 mr-2 text-center"
