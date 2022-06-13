@@ -33,7 +33,7 @@
       </div>
     </section>
     <!-- 製品詳細 -->
-    <section class="px-[22.5rem] py-20">
+    <section class="py-20 w-[1200px] mx-auto">
       <h2 class="text-[2rem] font-bold text-center">製品詳細</h2>
       <div class="text-lg leading-9 mt-16" v-html="info.content"></div>
     </section>
@@ -62,7 +62,7 @@ import api from '/src/api/index.js'
 import { useRoute, useRouter } from 'vue-router'
 const route = useRoute()
 const router = useRouter()
-
+window.scrollTo({ top: 0, behavior: "instant" })
 const info = ref({})
 const otherList = ref([])
 const getData = (id) => {

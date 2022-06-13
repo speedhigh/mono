@@ -17,7 +17,10 @@ const routes = [
         path: '/home',
         name: 'Home',
         component:() => import('../views/home/index.vue'),
-        meta: { name: 'Home' }
+        meta: { 
+          name: 'Home',
+          keepAlive: true
+        }
       }
     ]
   },
@@ -34,6 +37,7 @@ const routes = [
         component:() => import('../views/product/index.vue'),
         meta: {
           name: 'Product',
+          keepAlive: true,
           breadcrumb : [{ text: '首页', url: '/' }, { text: '产品信息', url: '/product/list' }]
         }
       },
@@ -152,6 +156,12 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+})
+
+router.beforeEach((to, from, next) => {
+  // keep-alive
+  if(!from.meta.keepAlive) window.scrollTo({ top: 0, behavior: "instant" })
+  next()
 })
 
 export default router

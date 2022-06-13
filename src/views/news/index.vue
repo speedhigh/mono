@@ -1,25 +1,18 @@
 <template>
-  <div class="py-10 px-[22.5rem]">
+  <div class="py-10 w-[1200px] mx-auto">
     <!-- banner -->
-    <div class="w-full h-[18.75rem] rounded bg-gray-400 mb-3"></div>
-
-    <!-- <div v-for="i in 10" :key="i">
-      <base-news-item :id="i + ''" date="2020年03月13日" title="新型コロナウイルス感染拡大防止のためのカスタマーサポート窓口体制について" />
-    </div> -->
-
-     <base-pagination
-        :size="10"
-        url="/article/getPage"
-        class="mt-4"
-      >
-        <template #default="slotProps">
-          <div v-for="item in slotProps.list" :key="item.id">
-            <base-news-item :id="item.id" :date="item.inserttime" :title="item.title" />
-          </div>
-        </template>
-      </base-pagination>
+    <img :src="banner" width="1200" height="300" alt="banner" class="w-full h-[18.75rem] rounded mb-3 shadow">
+    <!-- news -->
+    <base-pagination :size="10" url="/article/getPage" class="mt-4">
+      <template #default="slotProps">
+        <div v-for="item in slotProps.list" :key="item.id">
+          <base-news-item :id="item.id" :date="item.inserttime" :title="item.title" />
+        </div>
+      </template>
+    </base-pagination>
   </div>
 </template>
 
 <script setup>
+import banner from '/src/assets/images/news/banner.jpg'
 </script>

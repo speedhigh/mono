@@ -1,0 +1,44 @@
+<template>
+  <div class="relative">
+    <el-carousel
+      v-if="swiperList[0]"
+      ref="swiperRef" 
+      trigger="click" 
+      height="540px"
+      indicator-position="none" 
+      @change="changeSwiper"
+    >
+      <el-carousel-item v-for="item in swiperList" :key="item.id">
+        <img :src="item.thumbnail" :alt="item.title" width="100%" height="540" class="w-full h-full">
+      </el-carousel-item>
+    </el-carousel>
+    <div class="absolute bottom-5 inset-x-0 flex items-center justify-center space-x-6">
+      <div
+        v-for="i in swiperList.length"
+        :key="i"
+        class="w-12 h-2 rounded-sm cursor-pointer"
+        :class="active + 1 === i ? 'bg-primary' : 'bg-gray-100 opacity-60'"
+        @click="setActive(i)"
+      />
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import api from '/src/api/index.js'
+
+// 轮播图相关
+const active = ref(0)
+const changeSwiper = function(index) {
+  active.value = index
+}
+const swiperRef = ref()
+const setActive = function(index) {
+  swiperRef.value.setActiveItem(index-1)
+}
+const swiperList = ref([])
+api.get('/index/getLunBo').then((res) => {
+  swiperList.value = res.data.data
+})
+</script>

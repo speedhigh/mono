@@ -20,7 +20,7 @@
         :class="{ 'menu-item-active': $route.meta.name === 'Home' }"
         @click="jumpTo('/')"
       >
-        首页
+        HOME
       </div>
       <!-- 产品信息 -->
       <div>
@@ -30,14 +30,14 @@
           @mouseenter="isActive.product = true"
           @click="$router.push('/product/list'); isActive.product = !isActive.product"
         >
-          <p>产品信息</p>
+          <p>{{ t('message.product') }}</p>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" :class="{'transition duration-200 rotate-180' : isActive.product}" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
           </svg>
         </div>
         <div
           v-if="isActive.product"
-          class="absolute top-[100px] bg-[rgba(255,255,255,0.6)] backdrop-blur-md shadow rounded-b-md inset-x-0 py-10 leading-none flex justify-center space-x-32"
+          class="absolute top-[100px] bg-[rgba(255,255,255,0.6)] backdrop-blur-2xl shadow rounded-b-md inset-x-0 py-10 leading-none flex justify-center space-x-32"
           @mouseenter="isActive.product = true"
         >
           <!-- 精确搜索 -->
@@ -47,10 +47,10 @@
             </svg>
             <h3 class="mt-2.5 font-bold">精确搜索</h3>
             <el-input
-              v-model="searchValue"
+              v-model="keyword"
               placeholder="输入产品名称或关键字"
               class="mt-5 w-[16.25rem] h-9"
-              @keyup.enter.native="jumpTo('/product/list?keyword=' + searchValue)"
+              @keyup.enter.native="jumpTo('/product/list?keyword=' + keyword)"
             >
               <template #suffix>
                 <el-icon
@@ -58,7 +58,7 @@
                   :color="isActive.search ? '#1f2937' : '#9ca3af'"
                   @mouseenter="isActive.search = true"
                   @mouseleave="isActive.search = false"
-                  @click="jumpTo('/product/list?keyword=' + searchValue)"
+                  @click="jumpTo('/product/list?keyword=' + keyword)"
                 >
                   <search />
                 </el-icon>
@@ -97,7 +97,7 @@
         :class="{ 'menu-item-active' : $route.meta.name === 'News' }"
         @click="jumpTo('/news')"
       >
-        企业新闻
+        <p>{{ t('message.news') }}</p>
       </div>
       <!-- 关于我们 -->
       <div 
@@ -105,7 +105,7 @@
         :class="{ 'menu-item-active' : $route.meta.name === 'About' }"
         @click="jumpTo('/about')"
       >
-        关于我们
+        <p>{{ t('message.about') }}</p>
       </div>
       <!-- 语言 -->
       <div 
@@ -118,7 +118,7 @@
           @mouseenter="isActive.language = true"
           @click="isActive.language = !isActive.language"
         >
-          <p>语言</p>
+          <p>{{ t('message.language') }}</p>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" :class="{'transition duration-200 rotate-180' : isActive.language}" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
           </svg>
@@ -142,20 +142,23 @@
     <!-- 咨询 -->
     <div class="ml-12 w-[7.5rem] h-[6.25rem] bg-primary hover:bg-blue-400 active:bg-primary text-white flex flex-col items-center justify-center space-y-3.5 cursor-pointer">
       <svg class="w-6 h-6" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="m64 448 832-320-128 704-446.08-243.328L832 192 242.816 545.472 64 448zm256 512V657.024L512 768 320 960z"></path></svg>
-      <p>咨询</p>
+      <p>{{ t('message.ask') }}</p>
     </div>
   </header>
 </template>
 
 
 <script setup>
-import { ref, reactive } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, reactive, watch, getCurrentInstance } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { Search } from '@element-plus/icons-vue'
 import api from '/src/api/index.js'
 import logoImg from '/src/assets/images/logo.png'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 
 const router = useRouter()
+const route = useRoute()
 // 点击导航栏跳转
 const jumpTo = (url) => {
   isActive.product = false
@@ -168,20 +171,27 @@ const isActive = reactive({
   search: false
 })
 // 产品信息
-const searchValue = ref('')
+const keyword = ref('')
+watch(() => route.query, value => {
+  keyword.value = value.keyword ? value.keyword : ''
+})
 const seriesList = ref([])
 api.get('/product/getClazz').then((res) => {
   seriesList.value = res.data.data
 })
 // 设置多语言
-const languageDef = ref('zh')
+const { proxy } = getCurrentInstance()
+const languageDef = ref(localStorage.getItem('language') ? localStorage.getItem('language') : 'ja')
 const language = ref([
-  { title: '简体中文', abbr: 'zh' },
-  { title: 'EngLish', abbr: 'en' },
   { title: '日本語', abbr: 'ja' },
+  { title: '简体中文', abbr: 'zh' }
 ])
 const changeLanguage = (language) => {
   languageDef.value = language
+  if(localStorage.getItem('language') !== language) {
+    localStorage.setItem('language',language)
+    proxy.$i18n.locale = language
+  }
 }
 </script>
 

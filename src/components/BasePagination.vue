@@ -16,6 +16,7 @@
         layout="prev, pager, next, jumper"
         :total="total"
         class="mt-12"
+        @current-change="handleCurrentChange"
       />
     </div>
   </div>
@@ -78,7 +79,10 @@ export default {
       currentPage,
       localList,
       total,
-      askApi
+      askApi,
+      handleCurrentChange(page) {
+        askApi()
+      }
     }
   }
 }
