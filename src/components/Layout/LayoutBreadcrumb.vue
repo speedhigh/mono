@@ -5,10 +5,15 @@
         <div
           :class="$route.meta.breadcrumb['length'] - index === 1 ? 'text-primary cursor-default' : 'cursor-pointer hover:font-bold hover:underline'"
           @click="$router.push(item['url'])">
-          {{ item['text'] }}
+          {{ t(item['text']) }}
         </div>
         <div v-if="index < $route.meta.breadcrumb['length'] - 1" class="mx-2">></div>
       </div>
     </div>
   </div>
 </template>
+
+<script setup>
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+</script>

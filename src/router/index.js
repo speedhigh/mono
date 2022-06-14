@@ -36,7 +36,7 @@ const routes = [
         component:() => import('../views/nmn/index.vue'),
         meta: {
           name: 'Nmn',
-          breadcrumb : [{ text: '首页', url: '/' }, { text: 'NMN 活动页面', url: '/product/list' }]
+          breadcrumb : [{ text: 'message.home', url: '/' }, { text: 'message.nmn', url: '/product/list' }]
         }
       }
     ]
@@ -55,7 +55,7 @@ const routes = [
         meta: {
           name: 'Product',
           keepAlive: true,
-          breadcrumb : [{ text: '首页', url: '/' }, { text: '产品信息', url: '/product/list' }]
+          breadcrumb : [{ text: 'message.home', url: '/' }, { text: 'message.product', url: '/product/list' }]
         }
       },
       // 产品详情
@@ -65,7 +65,7 @@ const routes = [
         component: () => import('../views/product/detail.vue'),
         meta: {
           name: 'Product',
-          breadcrumb : [{ text: '首页', url: '/' }, { text: '产品信息', url: '/product/list' }, { text: '产品详情', url: '/product/detail/:id' }]
+          breadcrumb : [{ text: 'message.home', url: '/' }, { text: 'message.product', url: '/product/list' }, { text: 'message.productDtl', url: '/product/detail/:id' }]
         }
       }
     ]
@@ -84,7 +84,7 @@ const routes = [
         component:() => import('../views/news/index.vue'),
         meta: {
           name: 'News',
-          breadcrumb : [{ text: '首页', url: '/' }, { text: '新闻列表', url: '/news/list' }]
+          breadcrumb : [{ text: 'message.home', url: '/' }, { text: 'message.news', url: '/news/list' }]
         }
       },
       // 新闻详情
@@ -94,7 +94,7 @@ const routes = [
         component: () => import('../views/news/detail.vue'),
         meta: {
           name: 'News',
-          breadcrumb : [{ text: '首页', url: '/' }, { text: '新闻列表', url: '/news/list' }, { text: '新闻详情', url: '/news/detail/:id' }]
+          breadcrumb : [{ text: 'message.home', url: '/' }, { text: 'message.news', url: '/news/list' }, { text: 'message.newsDtl', url: '/news/detail/:id' }]
         }
       }
     ]
@@ -112,7 +112,7 @@ const routes = [
         component: () => import('../views/about/index.vue'),
         meta: {
           name: 'About',
-          breadcrumb : [{ text: '首页', url: '/' }, { text: '关于我们', url: '/about' }]
+          breadcrumb : [{ text: 'message.home', url: '/' }, { text: 'message.about', url: '/about' }]
         }
       },
       // 关于我们--layout
@@ -121,13 +121,13 @@ const routes = [
         component: AboutLayout,
         redirect: '/about/company',
         children: [
-          // 公司简介
+          // 公司简介 / 会社概要
           {
             path: '/about/company',
             component: () => import('../views/about/company.vue'),
             meta: {
               name: 'About',
-              breadcrumb : [{ text: '首页', url: '/' }, { text: '关于我们', url: '/about' }, { text: '公司简介', url: '/about/company' }]
+              breadcrumb : [{ text: 'message.home', url: '/' }, { text: 'message.about', url: '/about' }, { text: 'message.aboutCompany', url: '/about/company' }]
             }
           },
           // 经营理念
@@ -136,7 +136,7 @@ const routes = [
             component: () => import('../views/about/business.vue'),
             meta: {
               name: 'About',
-              breadcrumb : [{ text: '首页', url: '/' }, { text: '关于我们', url: '/about' }, { text: '经营理念', url: '/about/business' }]
+              breadcrumb : [{ text: 'message.home', url: '/' }, { text: 'message.about', url: '/about' }, { text: 'message.aboutBusiness', url: '/about/business' }]
             }
           },
           // 药剂师简介
@@ -145,7 +145,7 @@ const routes = [
             component: () => import('../views/about/pharmacist.vue'),
             meta: {
               name: 'About',
-              breadcrumb : [{ text: '首页', url: '/' }, { text: '关于我们', url: '/about' }, { text: '药剂师简介', url: '/about/pharmacist' }]
+              breadcrumb : [{ text: 'message.home', url: '/' }, { text: 'message.about', url: '/about' }, { text: 'message.aboutPharmacist', url: '/about/pharmacist' }]
             }
           },
           // 沿革历史
@@ -154,7 +154,7 @@ const routes = [
             component: () => import('../views/about/history.vue'),
             meta: {
               name: 'About',
-              breadcrumb : [{ text: '首页', url: '/' }, { text: '关于我们', url: '/about' }, { text: '沿革历史', url: '/about/history' }]
+              breadcrumb : [{ text: 'message.home', url: '/' }, { text: 'message.about', url: '/about' }, { text: 'message.aboutHistory', url: '/about/history' }]
             }
           }
         ],

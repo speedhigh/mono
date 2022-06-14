@@ -6,6 +6,7 @@
     "dev": "vite",
     "dev-mock": "vite --mode mock",
     "build": "vite build",
+    "build-test": "vite build --mode development",
     "preview": "vite preview"
   },
   "dependencies": {

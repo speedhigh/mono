@@ -1,13 +1,13 @@
 <template>
   <section class="mt-[4.38rem] w-full h-[54.38rem] bg-[#F8FBFF] pt-[4.75rem] pb-24 relative">
     <div class="relative w-[1200px] mx-auto">
-      <p class="text-lg">製品紹介 \</p>
-      <h2 class="mt-10 text-[2.5rem] text-primary">HSD健康製品</h2>
+      <p class="text-lg">{{ t('message.productTitleA') }} \</p>
+      <h2 class="mt-10 text-[2.5rem] text-primary">{{ t('message.productTitleB') }}</h2>
       <div class="mt-12 grid grid-cols-3 gap-x-[2.63rem] gap-y-10">
         <div 
           v-for="item in productList" 
           :key="item.id" 
-          class="h-[12.5rem] rounded-lg relative cursor-pointer hover:shadow-lg hover:shadow-primary/50"
+          class="h-[12.5rem] rounded-lg relative cursor-pointer hover:shadow-lg hover:shadow-primary/50 hover:opacity-90"
           @click="$router.push('/product/detail/' + item.id)"
         >
           <img :src="item.thumbnail" :alt="item.title" width="100%" height="200" class="w-full h-full rounded-lg">
@@ -21,8 +21,9 @@
           </div>
         </div>
       </div>
+      <!-- btn -->
       <div class="text-center">
-        <el-button type="primary" class="mt-14 min-w-[10rem] h-11" size="large" @click="$router.push('/product/list')">すべて表示</el-button>
+        <el-button type="primary" class="mt-14 min-w-[10rem] h-11" size="large" @click="$router.push('/product/list')">{{ t('message.seeAll') }}</el-button>
       </div>
     </div>
     <!-- star1 -->
@@ -66,6 +67,8 @@
 <script setup>
 import { ref } from 'vue'
 import api from '/src/api/index.js'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 
 // 首页展示的药品
 const productList = ref([])

@@ -45,32 +45,34 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
             </svg>
-            <h3 class="mt-2.5 font-bold">精确搜索</h3>
-            <el-input
-              v-model="keyword"
-              placeholder="输入产品名称或关键字"
-              class="mt-5 w-[16.25rem] h-9"
-              @keyup.enter.native="jumpTo('/product/list?keyword=' + keyword)"
-            >
-              <template #suffix>
-                <el-icon
-                  class="el-input__icon cursor-pointer rounded-xl"
-                  :color="isActive.search ? '#1f2937' : '#9ca3af'"
-                  @mouseenter="isActive.search = true"
-                  @mouseleave="isActive.search = false"
-                  @click="jumpTo('/product/list?keyword=' + keyword)"
-                >
-                  <search />
-                </el-icon>
-              </template>
-            </el-input>
+            <h3 class="mt-2.5 font-bold">正確な検索</h3>
+            <div class="w-96">
+              <el-input
+                v-model="keyword"
+                placeholder="製品名またはキーワードを入力してください"
+                class="mt-5 h-9"
+                @keyup.enter.native="jumpTo('/product/list?keyword=' + keyword)"
+              >
+                <template #suffix>
+                  <el-icon
+                    class="el-input__icon cursor-pointer rounded-xl"
+                    :color="isActive.search ? '#1f2937' : '#9ca3af'"
+                    @mouseenter="isActive.search = true"
+                    @mouseleave="isActive.search = false"
+                    @click="jumpTo('/product/list?keyword=' + keyword)"
+                  >
+                    <search />
+                  </el-icon>
+                </template>
+              </el-input>
+            </div>
           </div>
           <!-- 按类别搜索 -->
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-5 w-5 text-primary" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
             </svg>
-            <h3 class="ml-2 mt-2.5 font-bold">按类别搜索</h3>
+            <h3 class="ml-2 mt-2.5 font-bold">カテゴリで検索</h3>
             <div class="mt-4 flex items-start space-x-14">
               <div 
                 v-for="(item, index) in seriesList" 

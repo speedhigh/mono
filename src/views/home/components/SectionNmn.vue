@@ -1,6 +1,6 @@
 <template>
   <section class="mt-32">
-    <h2 class="text-6xl text-center">NMN サーチュイン</h2>
+    <h2 class="text-6xl text-center">{{ t('message.nmnTitle') }}</h2>
     <div class="mt-16 w-full flex h-96">
       <!-- 高純度 99.9% -->
       <div 
@@ -13,9 +13,9 @@
           v-if="active_nmn.a"
           class="w-full h-full bg-primary p-[4.5rem] text-white space-y-8"
         >
-          <h3 class="text-5xl text-center">高純度 99.9%</h3>
+          <h3 class="text-5xl text-center">{{ t('message.nmnTitleA') }}</h3>
           <p class="text-2xl text-center leading-[2.13rem]">
-            高純度 99.9%インフィニクスで使用するNMN原料は、全て国内自社製造し、最高純度99.9％*を実現しています。
+            {{ t('message.nmnTextA') }}
           </p>
         </div>
         <img v-else :src="NmnA" alt="高純度 99.9%" width="100%" height="384" class="w-full h-full object-cover">
@@ -31,9 +31,9 @@
           v-if="active_nmn.b"
           class="w-full h-full bg-primary p-[4.5rem] text-white space-y-8"
         >
-          <h3 class="text-5xl text-center">効性32倍持続</h3>
+          <h3 class="text-5xl text-center">{{ t('message.nmnTitleB') }}</h3>
           <p class="text-2xl text-center leading-[2.13rem]">
-            镸効性32倍持続NMNは体内吸収後に、補酵素へと変化。サポート成分を配合することで、NMN単体での摂取と比べて32倍もの長時間にわたり、より高い水準に保ち続けることが可能に。
+            {{ t('message.nmnTextB') }}
           </p>
         </div>
         <img v-else :src="NmnB" alt="効性32倍持続" width="100%" height="384" class="w-full h-full object-cover">
@@ -49,16 +49,16 @@
           v-if="active_nmn.c"
           class="w-full h-full bg-primary p-[4.5rem] text-white space-y-8"
         >
-          <h3 class="text-5xl text-center">きゅうしゅうりつ</h3>
+          <h3 class="text-5xl text-center">{{ t('message.nmnTitleC') }}</h3>
           <p class="text-2xl text-center leading-[2.13rem]">
-            きゅうしゅうりつNMNは体内吸収後に、補酵素へと変化。サポート成分を配合することで、NMN単体での摂取と比べて32倍もの長時間にわたり、より高い水準に保ち続けることが可能に。
+            {{ t('message.nmnTextC') }}
           </p>
         </div>
         <img v-else :src="NmnC" alt="きゅうしゅうりつ" width="100%" height="384" class="w-full h-full object-cover">
       </div>
     </div>
     <div class="text-center">
-      <button class="mt-14 w-64 h-12 bg-primary hover:bg-blue-400 text-white rounded">テクノロジーを詳し</button>
+      <button class="mt-14 w-56 h-12 bg-primary hover:bg-blue-400 text-white rounded">{{ t('message.seeMoreNmn') }}</button>
     </div>
   </section>
 </template>
@@ -68,6 +68,8 @@ import { reactive } from 'vue'
 import NmnA from '/src/assets/images/home/nmn_a.png'
 import NmnB from '/src/assets/images/home/nmn_b.png'
 import NmnC from '/src/assets/images/home/nmn_c.png'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 
 // NMN指针停留
 const active_nmn = reactive({
