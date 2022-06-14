@@ -8,7 +8,7 @@
     </div>
     <div class="mt-14 grid grid-cols-3 gap-x-[1.13rem] h-[17.5rem]">
       <!-- HSD国際株式会社概要 -->
-      <div class="w-full h-full cursor-pointer relative">
+      <div class="w-full h-full cursor-pointer relative" @click="$router.push('/about/company')">
         <img :src="AboutA" alt="HSD国際株式会社概要" width="628" height="280" class="w-full h-full">
         <div class="absolute bottom-0 inset-x-0 h-[50px] bg-[rgba(255,255,255,0.5)] w-full flex items-center px-3 space-x-2.5">
           <div class="w-5 h-5 bg-primary rounded-full">
@@ -20,7 +20,7 @@
         </div>
       </div>
       <!-- 会社の資質 -->
-      <div class="w-full h-full cursor-pointer relative">
+      <div class="w-full h-full cursor-pointer relative" @click="$router.push('/about/history')">
         <img :src="AboutB" alt="会社の資質" width="628" height="280" class="w-full h-full">
         <div class="absolute bottom-0 inset-x-0 h-[50px] bg-[rgba(255,255,255,0.5)] w-full flex items-center px-3 space-x-2.5">
           <div class="w-5 h-5 bg-primary rounded-full">
@@ -32,7 +32,7 @@
         </div>
       </div>
       <!-- 採用情報 -->
-      <div class="w-full h-full cursor-pointer relative">
+      <div class="w-full h-full cursor-pointer relative" @click="$router.push('/about/business')">
         <img :src="AboutC" alt="採用情報" width="628" height="280" class="w-full h-full">
         <div class="absolute bottom-0 inset-x-0 h-[50px] bg-[rgba(255,255,255,0.5)] w-full flex items-center px-3 space-x-2.5">
           <div class="w-5 h-5 bg-primary rounded-full">

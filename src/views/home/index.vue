@@ -23,4 +23,7 @@ import SectionNmn from './components/SectionNmn.vue'
 import SectionProduct from './components/SeciontProduct.vue'
 import SectionMedical from './components/SectionMedical.vue'
 import SectionAbout from './components/SectionAbout.vue'
+import emitter from '/src/until/eventbus'
+emitter.emit('changeLoadingState', true)
+setTimeout(() => emitter.emit('changeLoadingState', false), 300)
 </script>

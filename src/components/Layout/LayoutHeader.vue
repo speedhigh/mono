@@ -191,6 +191,7 @@ const changeLanguage = (language) => {
   if(localStorage.getItem('language') !== language) {
     localStorage.setItem('language',language)
     proxy.$i18n.locale = language
+    router.go(0)
   }
 }
 </script>

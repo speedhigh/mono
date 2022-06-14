@@ -5,7 +5,7 @@
         <img :src="info.thumbnail" :alt="info.title" width="402" height="402" class="flex-shrink-0 rounded w-[402px] h-[402px]">
         <div class="flex-grow">
           <div class="w-[8.75rem] h-10 border border-primary rounded leading-9 text-primary text-center">{{ info.series }}</div>
-          <h1 class="mt-7 text-[2rem] font-bold">{{ info.title }}</h1>
+          <h1 class="mt-7 text-[2rem] font-bold line-1">{{ info.title }}</h1>
           <h3 class="mt-4 text-2xl font-bold">{{ info.clazz }}</h3>
           <div class="mt-12">
             <div class="grid grid-cols-2 border-b">
@@ -49,7 +49,7 @@
         >
           <!-- <div class="w-full h-[16.25rem] bg-gray-300 rounded"></div> -->
           <img :src="item.thumbnail" width="260" height="260" :alt="item.title" class="w-[16.25rem] h-[16.25rem] rounded">
-          <h3 class="mt-7 text-2xl font-bold text-center">{{ item.title }}</h3>
+          <h3 class="mt-7 text-2xl font-bold text-center line-1">{{ item.title }}</h3>
         </div>
       </div>
     </section>

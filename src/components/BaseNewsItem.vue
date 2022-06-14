@@ -4,8 +4,8 @@
     @click="$router.push('/news/detail/' + props.id)"
   >
     <p>{{ changeDate(props.date) }}</p>
-    <div class="ml-6 px-2 py-1.5 bg-primary text-white text-sm rounded">新闻发布</div>
-    <p class="ml-8">{{ props.title }}</p>
+    <div class="ml-6 px-2 py-1.5 bg-primary text-white text-sm rounded">ニュース</div>
+    <p class="ml-8 line-1 w-[60%] text-left">{{ props.title }}</p>
   </div>
 </template>
 

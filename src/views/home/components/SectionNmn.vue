@@ -7,6 +7,7 @@
         class="w-1/3 h-full cursor-pointer"
         @mouseenter="active_nmn.a = true"
         @mouseleave="active_nmn.a = false"
+        @click="$router.push('/nmn')"
       >
         <div 
           v-if="active_nmn.a"
@@ -23,7 +24,8 @@
       <div 
         class="w-1/3 h-full cursor-pointer"
         @mouseenter="active_nmn.b = true"
-        @mouseleave="active_nmn.b = false"  
+        @mouseleave="active_nmn.b = false"
+        @click="$router.push('/nmn')"
       >
         <div 
           v-if="active_nmn.b"
@@ -40,7 +42,8 @@
       <div 
         class="w-1/3 h-full cursor-pointer"
         @mouseenter="active_nmn.c = true"
-        @mouseleave="active_nmn.c = false"  
+        @mouseleave="active_nmn.c = false"
+        @click="$router.push('/nmn')"
       >
         <div 
           v-if="active_nmn.c"
@@ -53,6 +56,9 @@
         </div>
         <img v-else :src="NmnC" alt="きゅうしゅうりつ" width="100%" height="384" class="w-full h-full object-cover">
       </div>
+    </div>
+    <div class="text-center">
+      <button class="mt-14 w-64 h-12 bg-primary hover:bg-blue-400 text-white rounded">テクノロジーを詳し</button>
     </div>
   </section>
 </template>

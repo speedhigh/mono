@@ -24,6 +24,23 @@ const routes = [
       }
     ]
   },
+  /** -----NMN----- **/
+  {
+    path: '/nmn',
+    component: Layout,
+    redirect: '/nmn/hero',
+    children: [
+      {
+        path: '/nmn/hero',
+        name: 'Nmn',
+        component:() => import('../views/nmn/index.vue'),
+        meta: {
+          name: 'Nmn',
+          breadcrumb : [{ text: '首页', url: '/' }, { text: 'NMN 活动页面', url: '/product/list' }]
+        }
+      }
+    ]
+  },
   /** -----产品信息----- **/
   {
     path: '/product',

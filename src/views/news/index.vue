@@ -15,4 +15,7 @@
 
 <script setup>
 import banner from '/src/assets/images/news/banner.jpg'
+import emitter from '/src/until/eventbus'
+emitter.emit('changeLoadingState', true)
+setTimeout(() => emitter.emit('changeLoadingState', false), 200)
 </script>
