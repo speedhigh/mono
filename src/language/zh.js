@@ -17,6 +17,13 @@ export default {
      // bth
      seeAll: '查看全部',
      seeMoreNmn: '了解更多',
+     // empty
+     empty: '暂无数据',
+     // footer
+     aboutUse: '关于使用',
+     security: '安全策略',
+     precautions: '使用注意事项',
+     footerText: '© 2022 HSD国际株式会社。 保留所有权利。',
      // home
     newsPublish: '新闻发布',
     nmnTitle: 'NMN产品特点',
@@ -28,6 +35,21 @@ export default {
     nmnTextC: '吸收率NMN在体内吸收后变成辅酶。通过配合支持成分，与NMN单体的摄取相比，可以持续32倍的长时间保持在更高的水平。',
     productTitleA: '产品简介',
     productTitleB: 'HSD 健康产品',
-    aboutus: '关于我们'
+    productTitleC: '老年护理产品',
+    productTitleD: '家用医疗设备',
+    aboutus: '关于我们',
+    aboutusA: 'HSD国际株式会社概述',
+    aboutusB: '公司资质',
+    aboutusC: '招聘信息',
+    // product、header-product
+    searchTypeA: '精确搜索',
+    searchTypeB: '按类别搜索',
+    searchTypeC: '按关键字搜索',
+    searchPlaceholder: '请输入产品名称或关键字',
+    capacity: '商品容量',
+    maker: '制造商',
+    faqs: '常见问题',
+    shopOnline: '在线购买',
+    otherProducts: '其他类似产品',
   }
 }

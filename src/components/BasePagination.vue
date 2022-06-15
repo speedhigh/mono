@@ -6,7 +6,7 @@
       description=" " 
       class="mt-36 text-sm text-gray-500"
     >
-      暂无数据
+      {{ t('message.empty') }}
     </el-empty>
     <div class="flex items-center justify-center">
       <el-pagination
@@ -26,6 +26,7 @@
 import { ref, watch } from 'vue'
 import { pickBy } from 'lodash'
 import api from '/src/api/index.js'
+import { useI18n } from 'vue-i18n'
 // import emitter from '/src/until/eventbus'
 export default {
   props: {
@@ -43,6 +44,7 @@ export default {
     }
   },
   setup(props) {
+    const { t } = useI18n()
     const loading = ref(true)
     // emitter.emit('changeLoadingState', true)
     const currentPage = ref(1)
@@ -75,6 +77,7 @@ export default {
       deep: true
     })
     return {
+      t,
       loading,
       currentPage,
       localList,

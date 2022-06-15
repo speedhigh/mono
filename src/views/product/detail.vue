@@ -4,26 +4,26 @@
       <div class="py-20 flex justify-center space-x-[3.75rem]">
         <img :src="info.thumbnail" :alt="info.title" width="402" height="402" class="flex-shrink-0 rounded w-[402px] h-[402px]">
         <div class="flex-grow">
-          <div class="w-[8.75rem] h-10 border border-primary rounded leading-9 text-primary text-center">{{ info.series }}</div>
+          <button class="h-10 border border-primary rounded leading-9 text-primary text-center px-4 cursor-default">{{ info.series }}</button>
           <h1 class="mt-7 text-[2rem] font-bold line-1">{{ info.title }}</h1>
           <h3 class="mt-4 text-2xl font-bold">{{ info.clazz }}</h3>
           <div class="mt-12">
             <div class="grid grid-cols-2 border-b">
-              <div class="col-span-1 bg-gray-100 text-lg text-center leading-[3rem]">単一製品の容量</div>
-              <div class="col-span-1 bg-gray-100 text-lg text-center leading-[3rem] border-l border-gray">メーカー</div>
+              <div class="col-span-1 text-lg text-center leading-[3rem] bg-gray-100">{{ t('message.capacity') }}</div>
+              <div class="col-span-1 text-lg text-center leading-[3rem] bg-gray-100 border-l border-gray">{{ t('message.maker') }}</div>
               <div class="col-span-1 text-lg text-center leading-[3rem]">{{ info.weight }}</div>
               <div class="col-span-1 text-lg text-center leading-[3rem] border-l border-gray-200">{{ info.storename }}</div>
             </div>
           </div>
           <div class="mt-12 flex space-x-10">
             <button class="bg-primary hover:bg-blue-400 active:bg-primary text-white w-[16.25rem] h-[3.75rem] rounded flex items-center justify-center">
-              <p>よくある質問</p>
+              <p>{{ t('message.faqs') }}</p>
               <svg xmlns="http://www.w3.org/2000/svg" class="ml-3 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
               </svg>
             </button>
             <button class="bg-primary hover:bg-blue-400 active:bg-primary text-white w-[16.25rem] h-[3.75rem] rounded flex items-center justify-center">
-              <p>オンライン買い物</p>
+              <p>{{ t('message.shopOnline') }}</p>
               <svg xmlns="http://www.w3.org/2000/svg" class="ml-3 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
               </svg>
@@ -34,22 +34,21 @@
     </section>
     <!-- 製品詳細 -->
     <section class="py-20 w-[1200px] mx-auto">
-      <h2 class="text-[2rem] font-bold text-center">製品詳細</h2>
+      <h2 class="text-[2rem] font-bold text-center">{{ t('message.productDtl') }}</h2>
       <div class="text-lg leading-9 mt-16" v-html="info.content"></div>
     </section>
     <!-- その他の類似製品 -->
     <section class="p-[5.63rem] bg-gray-100">
-      <h2 class="text-[2rem] font-bold text-center">その他の類似製品</h2>
-      <div class="mt-14 flex justify-center space-x-[3.75rem]">
+      <h2 class="text-[2rem] font-bold text-center">{{ t('message.otherProducts') }}</h2>
+      <div class="mt-14 flex justify-center space-x-8">
         <div 
           v-for="item in otherList" 
           :key="item.id" 
-          class="w-[18.75rem] h-[23.13rem] p-5 bg-white shadow-md rounded-[1.25rem] cursor-pointer"
+          class="w-60 h-72 p-5 bg-white shadow-md rounded-[1.25rem] cursor-pointer hover:opacity-80 hover:shadow-xl"
           @click="changeOther(item.id)"
         >
-          <!-- <div class="w-full h-[16.25rem] bg-gray-300 rounded"></div> -->
-          <img :src="item.thumbnail" width="260" height="260" :alt="item.title" class="w-[16.25rem] h-[16.25rem] rounded">
-          <h3 class="mt-7 text-2xl font-bold text-center line-1">{{ item.title }}</h3>
+          <img :src="item.thumbnail" width="200" height="200" :alt="item.title" class="w-[200px] h-[200px] rounded">
+          <h3 class="mt-4 text-xl font-bold text-center line-1">{{ item.title }}</h3>
         </div>
       </div>
     </section>
@@ -60,6 +59,8 @@
 import { ref } from 'vue'
 import api from '/src/api/index.js'
 import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 const route = useRoute()
 const router = useRouter()
 window.scrollTo({ top: 0, behavior: "instant" })
@@ -79,5 +80,4 @@ const changeOther = (id) => {
   getData(id)
   window.scrollTo({ top: 0, behavior: "instant" })
 }
-
 </script>

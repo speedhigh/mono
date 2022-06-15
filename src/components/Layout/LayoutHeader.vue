@@ -37,7 +37,7 @@
         </div>
         <div
           v-if="isActive.product"
-          class="absolute top-[100px] bg-[rgba(255,255,255,0.6)] backdrop-blur-2xl shadow rounded-b-md inset-x-0 py-10 leading-none flex justify-center space-x-32"
+          class="absolute top-[100px] bg-[rgba(255,255,255,0.9)] backdrop-blur-md shadow rounded-b-md inset-x-0 py-10 leading-none flex justify-center space-x-32"
           @mouseenter="isActive.product = true"
         >
           <!-- 精确搜索 -->
@@ -45,11 +45,11 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
             </svg>
-            <h3 class="mt-2.5 font-bold">正確な検索</h3>
+            <h3 class="mt-2.5 font-bold">{{ t('message.searchTypeA') }}</h3>
             <div class="w-96">
               <el-input
                 v-model="keyword"
-                placeholder="製品名またはキーワードを入力してください"
+                :placeholder="t('message.searchPlaceholder')"
                 class="mt-5 h-9"
                 @keyup.enter.native="jumpTo('/product/list?keyword=' + keyword)"
               >
@@ -72,12 +72,12 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-5 w-5 text-primary" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
             </svg>
-            <h3 class="ml-2 mt-2.5 font-bold">カテゴリで検索</h3>
+            <h3 class="ml-2 mt-2.5 font-bold">{{ t('message.searchTypeB') }}</h3>
             <div class="mt-4 flex items-start space-x-14">
               <div 
                 v-for="(item, index) in seriesList" 
                 :key="index" 
-                class="flex flex-col flex-wrap h-60 flex-shrink-0"
+                class="flex flex-col items-start flex-wrap h-60 flex-shrink-0"
               >
                 <div
                   v-for="(tag, i) in item.seriesnames"

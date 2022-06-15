@@ -8,11 +8,11 @@
       class="fixed top-0 w-full h-screen z-[200000]"
     />
     <router-view v-slot="{ Component }">
-        <keep-alive>
-          <component :is="Component" :key="$route.fullPath" v-if="$route.meta.keepAlive" />
-        </keep-alive>
-        <component :is="Component" :key="$route.fullPath" v-if="!$route.meta.keepAlive" />
-      </router-view>
+      <keep-alive>
+        <component :is="Component" :key="$route.fullPath" v-if="$route.meta.keepAlive" />
+      </keep-alive>
+      <component :is="Component" :key="$route.fullPath" v-if="!$route.meta.keepAlive" />
+    </router-view>
   </div>
 </template>
 

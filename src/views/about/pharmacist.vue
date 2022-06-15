@@ -1,7 +1,8 @@
 <template>
   <div>
-    <h2 class="text-4xl">薬剤師の概要</h2>
-    <div class="mt-12 flex space-x-10">
+    <h2 class="text-4xl">{{ msg.title }}</h2>
+    <div v-html="msg.content" class="mt-[3.75rem]" />
+    <!-- <div class="mt-12 flex space-x-10">
       <div class="text-sm font-light leading-[1.88rem] space-y-8">
         <p>
           明治７年創業の薬局で生まれ、幼い頃から薬に囲まれ薬剤師となりました。３年間病院に勤務後、40年間を熊本で過ごし、その間、中医師のもとで中国漢方を学びました。
@@ -13,6 +14,15 @@
       <div class="flex-shrink-0 w-[12.5rem] h-60 rounded-lg">
         <img src="https://api.lorem.space/image/face?w=200&h=240" alt="薬剤師" class="rounded-lg">
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+import api from '/src/api/index.js'
+const msg = ref({})
+api.get('/article/getDetailByTitle', { title: '药剂师简介' }).then((res) => {
+  Object.assign(msg.value, res.data.data)
+})
+</script>

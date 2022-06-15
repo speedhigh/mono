@@ -5,7 +5,7 @@
       <div v-for="(item, index) in menuList" :key="index">
         <div class="flex items-start space-x-8">
           <div class="flex-shrink-0 mb-5">
-            <p class="text-[1.38rem] font-bold">分類による検索</p>
+            <p class="text-[1.38rem] font-bold">{{ t('message.searchTypeB') }}</p>
             <p class="mt-2 text-center">({{ item.clazzname }})</p>
           </div>
           <div class="flex-grow w-full flex items-center flex-wrap">
@@ -25,7 +25,7 @@
     <!-- 搜索 -->
     <section class="h-[7.5rem] bg-gray-100">
       <div class="w-[1200px] h-full mx-auto flex items-center space-x-10">
-        <h2 class="text-[1.38rem] font-bold">キーワードで探す</h2>
+        <h2 class="text-[1.38rem] font-bold">{{ t('message.searchTypeC') }}</h2>
         <div class="w-[37.5rem] h-12 border border-gray-400 bg-white rounded-3xl flex items-center px-2">
           <input 
             v-model="keyword"
@@ -56,7 +56,7 @@
           <div class="grid grid-cols-3 gap-[3.75rem]">
             <div v-for="item in slotProps.list" :key="item.id">
               <div class="rounded-2xl shadow-lg border w-full h-[28.75rem] pt-12 pb-10 px-20">
-                <img :src="item.thumbnail" :alt="item.title" width="180" height="180" class="rounded-full h-[11.25rem] w-[11.25rem] mx-auto">
+                <img :src="item.thumbnail" :alt="item.title" width="180" height="180" class="rounded-full h-[11.25rem] w-[11.25rem] shadow-xl mx-auto">
                 <h3 class="mt-[4.38rem] text-2xl font-bold line-1">{{ item.title }}</h3>
                 <button 
                   class="mt-10 w-full h-[3.38rem] bg-primary text-white rounded hover:border-2 hover:border-primary hover:bg-white hover:text-primary active:border-blue-200 active:text-blue-300"
@@ -75,7 +75,7 @@
     </section>
     <!-- 新闻 -->
     <section class="py-20 w-[1200px] mx-auto">
-      <base-news />
+      <base-news :showBtn="true" />
     </section>
   </main>
 </template>
@@ -85,6 +85,8 @@ import { ref, watch } from 'vue'
 import api from '/src/api/index.js'
 import { useRoute } from 'vue-router'
 import emitter from '/src/until/eventbus'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 emitter.emit('changeLoadingState', true)
 const route = useRoute()
 // 获取类别

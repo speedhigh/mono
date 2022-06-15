@@ -8,7 +8,7 @@
     <div v-for="item in newsList" :key="item.id">
       <base-news-item :id="item.id" :date="item.inserttime" :title="item.title" />
     </div>
-    <div class="text-center">
+    <div v-if="props.showBtn" class="text-center">
       <el-button type="primary" class="mt-14 min-w-[15rem] h-[3.38rem]" size="large" @click="$router.push('/news/list')">{{ t('message.seeAll') }}</el-button>
     </div>
   </div>
@@ -16,8 +16,13 @@
 
 <script setup>
 import { ref } from 'vue'
+import { defineProps } from 'vue'
 import api from '/src/api/index.js'
 import { useI18n } from 'vue-i18n'
+
+const props = defineProps({
+  showBtn: Boolean
+})
 const { t } = useI18n()
 const newsList = ref([])
 api.get('/index/getArticle').then((res) => {

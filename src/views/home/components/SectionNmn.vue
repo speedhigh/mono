@@ -58,7 +58,12 @@
       </div>
     </div>
     <div class="text-center">
-      <button class="mt-14 w-56 h-12 bg-primary hover:bg-blue-400 text-white rounded">{{ t('message.seeMoreNmn') }}</button>
+      <button 
+        class="mt-14 w-56 h-12 bg-primary hover:bg-blue-400 text-white rounded"
+        @click="$router.push('/nmn')"
+      >
+        {{ t('message.seeMoreNmn') }}
+      </button>
     </div>
   </section>
 </template>

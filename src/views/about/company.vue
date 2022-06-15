@@ -1,7 +1,8 @@
 <template>
   <div>
-    <h2 class="text-4xl">会社概要</h2>
-    <!-- 会社の紹介 -->
+    <h2 class="text-4xl">{{ msg.title }}</h2>
+    <div v-html="msg.content" class="mt-[3.75rem]" />
+    <!-- 会社の紹介
     <div class="mt-[3.75rem] flex items-center space-x-2.5">
       <div class="w-1 h-[1.63rem] bg-blue-500 rounded-sm" />
       <p class="text-2xl">会社の紹介</p>
@@ -20,7 +21,8 @@
         会社設立以来、安全で信頼できる日本の医薬品や医療機器をパートナーに提供するために、いくつかの外国企業と戦略的パートナーシップを結び、エンドユーザーはアジアのいくつかの国にいます。
       </p>
     </div>
-    <!-- 会社概要 -->
+    -->
+    <!-- 会社概要
     <div class="mt-14 flex items-center space-x-2.5">
       <div class="w-1 h-[1.63rem] bg-blue-500 rounded-sm" />
       <p class="text-2xl">会社概要</p>
@@ -53,16 +55,26 @@
         </tr>
       </tbody>
     </table>
-    <!-- 組織図 -->
+     -->
+    <!-- 組織図
     <div class="mt-14 flex items-center space-x-2.5">
       <div class="w-1 h-[1.63rem] bg-blue-500 rounded-sm" />
       <p class="text-2xl">組織図</p>
     </div>
-    <div class="mt-[2.31rem] w-full h-[40.19rem] bg-red-200">
-
-    </div>
+    <div class="mt-[2.31rem] w-full h-[40.19rem] bg-red-200" />
+    -->
   </div>
 </template>
+
+
+<script setup>
+import { ref } from 'vue'
+import api from '/src/api/index.js'
+const msg = ref({})
+api.get('/article/getDetailByTitle', { title: '关于我们' }).then((res) => {
+  Object.assign(msg.value, res.data.data)
+})
+</script>
 
 <style scoped>
 td {

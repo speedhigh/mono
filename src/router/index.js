@@ -156,6 +156,24 @@ const routes = [
               name: 'About',
               breadcrumb : [{ text: 'message.home', url: '/' }, { text: 'message.about', url: '/about' }, { text: 'message.aboutHistory', url: '/about/history' }]
             }
+          },
+          // 公司资质
+          {
+            path: '/about/aptitude',
+            component: () => import('../views/about/aptitude.vue'),
+            meta: {
+              name: 'About',
+              breadcrumb : [{ text: 'message.home', url: '/' }, { text: 'message.about', url: '/about' }, { text: 'message.aboutusB', url: '/about/aptitude' }]
+            }
+          },
+          // 招聘信息
+          {
+            path: '/about/recruit',
+            component: () => import('../views/about/recruit.vue'),
+            meta: {
+              name: 'About',
+              breadcrumb : [{ text: 'message.home', url: '/' }, { text: 'message.about', url: '/about' }, { text: 'message.aboutusC', url: '/about/recruit' }]
+            }
           }
         ],
       }

@@ -14,7 +14,7 @@
     </div>
     <!-- new -->
     <div class="mt-3 w-[1200px] mx-auto pb-20">
-      <base-news />
+      <base-news :showBtn="false" />
     </div>
   </div>
 </template>
