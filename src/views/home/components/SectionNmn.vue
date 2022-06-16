@@ -14,9 +14,7 @@
           class="w-full h-full bg-primary p-[4.5rem] text-white space-y-10"
         >
           <h3 class="text-4xl text-center">{{ t('message.nmnTitleA') }}</h3>
-          <p class="text-xl text-center leading-[2.13rem]">
-            {{ t('message.nmnTextA') }}
-          </p>
+          <p class="text-xl text-center leading-[2.13rem]">{{ t('message.nmnTextA') }}</p>
         </div>
         <img v-else :src="NmnA" alt="高純度 99.9%" width="100%" height="384" class="w-full h-full object-cover">
       </div>
@@ -32,9 +30,7 @@
           class="w-full h-full bg-primary p-[4.5rem] text-white space-y-10"
         >
           <h3 class="text-4xl text-center">{{ t('message.nmnTitleB') }}</h3>
-          <p class="text-xl text-center leading-[2.13rem]">
-            {{ t('message.nmnTextB') }}
-          </p>
+          <p class="text-xl text-center leading-[2.13rem]">{{ t('message.nmnTextB') }}</p>
         </div>
         <img v-else :src="NmnB" alt="効性32倍持続" width="100%" height="384" class="w-full h-full object-cover">
       </div>
@@ -50,9 +46,7 @@
           class="w-full h-full bg-primary p-[4.5rem] text-white space-y-10"
         >
           <h3 class="text-4xl text-center">{{ t('message.nmnTitleC') }}</h3>
-          <p class="text-xl text-center leading-[2.13rem]">
-            {{ t('message.nmnTextC') }}
-          </p>
+          <p class="text-xl text-center leading-[2.13rem]">{{ t('message.nmnTextC') }}</p>
         </div>
         <img v-else :src="NmnC" alt="きゅうしゅうりつ" width="100%" height="384" class="w-full h-full object-cover">
       </div>
