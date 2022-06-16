@@ -14,7 +14,7 @@
               :key="i"
               class="ml-[1.88rem] mb-5 px-5 py-2 rounded-3xl border hover:border-primary"
               :class="$route.query.clazzname === item.clazzname && $route.query.seriesname === series ? 'text-white bg-primary border-primary' : 'text-gray-600 hover:text-primary border-gray-400'"
-              @click="$router.push('/product/list?clazzname=' + item.clazzname + '&seriesname=' + series)"
+              @click="selOption(item.clazzname, series)"
             >
               {{ series }}
             </button>
@@ -48,7 +48,7 @@
     <!-- 商品列表 -->
     <section class="pt-20 w-[1200px] mx-auto">
       <base-pagination
-        :size="6"
+        :size="8"
         url="/product/getPage"
         :params="params"
       >
@@ -58,17 +58,17 @@
               <div class="rounded-xl border border-gray-50 w-full h-96 pt-6 pb-5 px-10 shadow-md">
                 <img
                   :src="item.thumbnail" 
-                  :alt="item.title" 
-                  width="180" 
-                  height="180" 
+                  :alt="item.title"
+                  width="180"
+                  height="180"
                   class="rounded-full h-[11.25rem] w-[11.25rem] shadow-lg border border-gray-50 mx-auto"
                 >
                 <h3 class="mt-12 text-xl font-bold line-1">{{ item.title }}</h3>
-                <button 
+                <button
                   class="mt-6 w-[8.75rem] h-11 bg-primary text-white text-sm rounded hover:border-2 hover:border-primary hover:bg-white hover:text-primary active:border-blue-200 active:text-blue-300"
                   @click="$router.push('/product/detail/' + item.id)"
                 >
-                  詳細を見る
+                  {{ t('message.seeDtl') }}
                   <svg xmlns="http://www.w3.org/2000/svg" class="-mt-0.5 h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
                   </svg>
@@ -89,11 +89,12 @@
 <script setup>
 import { ref, watch } from 'vue'
 import api from '/src/api/index.js'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import emitter from '/src/until/eventbus'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const route = useRoute()
+const router = useRouter()
 // 获取类别
 const menuList = ref()
 api.get('/product/getClazz').then((res) => {
@@ -104,14 +105,22 @@ api.get('/product/getClazz').then((res) => {
     setTimeout(() => emitter.emit('changeLoadingState', false), 300)
   }
 })
-const keyword = ref('')
+const keyword = ref(route.query.keyword)
 const params = ref({
   keyword: route.query.keyword,
   clazzname: route.query.clazzname,
   seriesname: route.query.seriesname
 })
 
+const selOption = function(clazzname, series) {
+  if(route.query.clazzname === clazzname && route.query.seriesname === series) {
+    router.push('/product/list')
+    return
+  }
+  router.push('/product/list?clazzname=' + clazzname + '&seriesname=' + series)
+}
+
 watch(() => route.query, value => {
-   setTimeout(() => emitter.emit('changeLoadingState', false), 100)
+  setTimeout(() => emitter.emit('changeLoadingState', false), 100)
 })
 </script>

@@ -14,17 +14,18 @@ export default {
     aboutHistory: '沿革历史',
     ask: '咨询',
     nmn: 'NMN活动页面',
-     // bth
-     seeAll: '查看全部',
-     seeMoreNmn: '了解更多',
-     // empty
-     empty: '暂无数据',
-     // footer
-     aboutUse: '关于使用',
-     security: '安全策略',
-     precautions: '使用注意事项',
-     footerText: '© 2022 HSD国际株式会社。 保留所有权利。',
-     // home
+    // bth
+    seeAll: '查看全部',
+    seeMoreNmn: '了解更多',
+    seeDtl: '查看详情',
+    // empty
+    empty: '暂无数据',
+    // footer
+    aboutUse: '关于使用',
+    security: '安全策略',
+    precautions: '使用注意事项',
+    footerText: '© 2022 HSD国际株式会社。 保留所有权利。',
+    // home
     newsPublish: '新闻发布',
     nmnTitle: 'NMN产品特点',
     nmnTitleA: '高纯度99.9%',

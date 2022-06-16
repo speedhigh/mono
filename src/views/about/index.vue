@@ -60,13 +60,13 @@
 </template>
 
 <script setup>
-import banner from '/src/assets/images/about/banner.jpg'
-import aboutA from '/src/assets/images/about/about_a.png'
-import aboutB from '/src/assets/images/about/about_b.png'
-import aboutC from '/src/assets/images/about/about_c.png'
-import aboutD from '/src/assets/images/about/about_d.png'
-import aboutE from '/src/assets/images/home/about_b.png'
-import aboutF from '/src/assets/images/home/about_c.png'
+import banner from '/src/assets/images/about/banner.webp'
+import aboutA from '/src/assets/images/about/about_a.webp'
+import aboutB from '/src/assets/images/about/about_b.webp'
+import aboutC from '/src/assets/images/about/about_c.webp'
+import aboutD from '/src/assets/images/about/about_d.webp'
+import aboutE from '/src/assets/images/home/about_b.webp'
+import aboutF from '/src/assets/images/home/about_c.webp'
 import emitter from '/src/until/eventbus'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()

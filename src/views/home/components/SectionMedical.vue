@@ -34,8 +34,8 @@
 </template>
 
 <script setup>
-import MedicalA from '/src/assets/images/home/medical_a.png'
-import MedicalB from '/src/assets/images/home/medical_b.png'
+import MedicalA from '/src/assets/images/home/medical_a.webp'
+import MedicalB from '/src/assets/images/home/medical_b.webp'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 </script>

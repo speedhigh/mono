@@ -40,10 +40,13 @@
     <!-- その他の類似製品 -->
     <section class="p-[5.63rem] bg-gray-100">
       <h2 class="text-[2rem] font-bold text-center">{{ t('message.otherProducts') }}</h2>
-      <div v-if="otherList.length > 0" class="mt-14 flex justify-center space-x-8">
+      <div
+        v-if="otherList.length > 0"
+        class="mt-14 flex justify-center space-x-8"
+      >
         <div
-          v-for="i in 6" 
-          :key="i" 
+          v-for="i in 6"
+          :key="i"
           class="w-60 h-72 p-5 bg-white shadow-md rounded-[1.25rem] cursor-pointer hover:opacity-80 hover:shadow-xl"
           @click="changeOther(otherList[i].id)"
         >

@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import banner from '/src/assets/images/news/banner.jpg'
+import banner from '/src/assets/images/news/banner.webp'
 import emitter from '/src/until/eventbus'
 setTimeout(() => emitter.emit('changeLoadingState', false), 100)
 </script>

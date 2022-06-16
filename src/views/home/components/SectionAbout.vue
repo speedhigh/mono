@@ -48,9 +48,9 @@
 </template>
 
 <script setup>
-import AboutA from '/src/assets/images/home/about_a.png'
-import AboutB from '/src/assets/images/home/about_b.png'
-import AboutC from '/src/assets/images/home/about_c.png'
+import AboutA from '/src/assets/images/home/about_a.webp'
+import AboutB from '/src/assets/images/home/about_b.webp'
+import AboutC from '/src/assets/images/home/about_c.webp'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 </script>

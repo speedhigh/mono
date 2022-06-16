@@ -18,6 +18,7 @@ export default {
     // bth
     seeAll: 'すべて表示',
     seeMoreNmn: 'テクノロジーを詳し',
+    seeDtl: '詳細を見る',
     // empty
     empty: 'データなし',
     // footer

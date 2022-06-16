@@ -26,7 +26,7 @@
         <el-button type="primary" class="mt-14 min-w-[10rem] h-11" size="large" @click="$router.push('/product/list')">{{ t('message.seeAll') }}</el-button>
       </div>
     </div>
-    <!-- star1 -->
+    <!-- triangle1 -->
     <div
       class="absolute left-10 bottom-[4.75rem] w-[16.76rem] h-[18.5rem] bg-primary opacity-10 p-4"
       style="clip-path: polygon(100% 0%, 90% 100%, 0% 40%)"
@@ -36,7 +36,7 @@
         style="clip-path: polygon(100% 2%, 90% 96%, 5% 40%)"
       />
     </div>
-    <!-- star2 -->
+    <!-- triangle2 -->
     <div
       class="absolute top-6 left-64 w-[5.5rem] h-[5.5rem] bg-primary opacity-10 p-3.5"
       style="clip-path: polygon(0% 0%, 100% 30%, 20% 100%)"
@@ -46,7 +46,7 @@
         style="clip-path: polygon(0% 0%, 92% 28%,18% 92%)"
       />
     </div>
-    <!-- star3 -->
+    <!-- triangle3 -->
     <div
       class="absolute top-24 left-[74.5rem] w-[5.5rem] h-[5.5rem] bg-primary opacity-10 p-3.5"
       style="clip-path: polygon(70% 0%, 100% 100%, 0% 80%)"
@@ -56,24 +56,24 @@
         style="clip-path: polygon(74% 8%, 100% 100%, 8% 84%)"
       />
     </div>
-    <!-- star4 -->
+    <!-- triangle4 -->
     <div
       class="absolute right-60 bottom-[19rem] w-20 h-20 bg-primary opacity-10 p-3"
       style="clip-path: polygon(0% 0%, 100% 5%, 40% 100%)"
     >
       <div
         class="w-full h-full bg-[#F8FBFF]"
-        style="clip-path: polygon(8% 0%, 90% 2%, 40% 78%)" 
+        style="clip-path: polygon(8% 0%, 90% 2%, 40% 78%)"
       />
     </div>
-    <!-- star5 -->
+    <!-- triangle5 -->
     <div
       class="absolute right-[4.63rem] bottom-4 w-56 h-56 bg-primary opacity-10 p-3"
       style="clip-path: polygon(100% 0%, 90% 100%, 0% 40%)"
     >
       <div
-        class="w-full h-full bg-[#F8FBFF]" 
-        style="clip-path: polygon(100% 2%, 90% 96%, 4% 40%)" 
+        class="w-full h-full bg-[#F8FBFF]"
+        style="clip-path: polygon(100% 2%, 90% 96%, 4% 40%)"
       />
     </div>
   </section>
