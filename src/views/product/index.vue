@@ -55,8 +55,8 @@
         <template #default="slotProps">
           <div class="grid grid-cols-3 gap-[3.75rem]">
             <div v-for="item in slotProps.list" :key="item.id">
-              <div class="rounded-2xl shadow-lg border w-full h-[28.75rem] pt-12 pb-10 px-20">
-                <img :src="item.thumbnail" :alt="item.title" width="180" height="180" class="rounded-full h-[11.25rem] w-[11.25rem] shadow-xl mx-auto">
+              <div class="rounded-xl border w-full h-[28.75rem] pt-12 pb-10 px-20 shadow">
+                <img :src="item.thumbnail" :alt="item.title" width="180" height="180" class="rounded-full h-[11.25rem] w-[11.25rem] shadow-lg mx-auto">
                 <h3 class="mt-[4.38rem] text-2xl font-bold line-1">{{ item.title }}</h3>
                 <button 
                   class="mt-10 w-full h-[3.38rem] bg-primary text-white rounded hover:border-2 hover:border-primary hover:bg-white hover:text-primary active:border-blue-200 active:text-blue-300"
@@ -87,13 +87,16 @@ import { useRoute } from 'vue-router'
 import emitter from '/src/until/eventbus'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
-emitter.emit('changeLoadingState', true)
 const route = useRoute()
 // 获取类别
 const menuList = ref()
 api.get('/product/getClazz').then((res) => {
-  menuList.value = res.data.data
-  setTimeout(() => emitter.emit('changeLoadingState', false), 300)
+  if(res.data.code === 20000) {
+    menuList.value = res.data.data
+    emitter.emit('changeLoadingState', false)
+  } else {
+    setTimeout(() => emitter.emit('changeLoadingState', false), 300)
+  }
 })
 const keyword = ref('')
 const params = ref({
@@ -103,9 +106,6 @@ const params = ref({
 })
 
 watch(() => route.query, value => {
-  console.log('aaa')
-  params.value.keyword = value.keyword ? value.keyword : ''
-  params.value.clazzname = value.clazzname ? value.clazzname : null
-  params.value.seriesname = value.seriesname ? value.seriesname : null
+   setTimeout(() => emitter.emit('changeLoadingState', false), 100)
 })
 </script>

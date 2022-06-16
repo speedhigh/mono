@@ -21,8 +21,11 @@
 <script setup>
 import { ref } from 'vue'
 import api from '/src/api/index.js'
+import emitter from '/src/until/eventbus'
+
 const msg = ref({})
 api.get('/article/getDetailByTitle', { title: '药剂师简介' }).then((res) => {
   Object.assign(msg.value, res.data.data)
+  setTimeout(() => emitter.emit('changeLoadingState', false), 50)
 })
 </script>

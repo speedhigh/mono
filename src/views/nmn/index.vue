@@ -187,14 +187,13 @@ import BannerD from '/src/assets/images/nmn/banner-d.jpg'
 import BannerE from '/src/assets/images/nmn/banner-e.jpg'
 import Avatar from '/src/assets/images/nmn/avatar.png'
 import emitter from '/src/until/eventbus'
-emitter.emit('changeLoadingState', true)
 
 window.scrollTo({ top: 0, behavior: "instant" })
 
 const commentList = ref([])
 api.get('/comment/getList').then((res) => {
   commentList.value = res.data.data
-  setTimeout(() => emitter.emit('changeLoadingState', false), 200)
+  setTimeout(() => emitter.emit('changeLoadingState', false), 150)
 })
 const viewDetail = function(url) {
   window.open(url)    // row中的数据是表格scope.row  由后台接口返回

@@ -72,6 +72,7 @@ export default {
     }
     askApi()
     watch(() => props.params, (value) => {
+      console.log('vvv', value)
       askApi(false)
     }, {
       deep: true

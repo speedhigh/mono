@@ -179,6 +179,7 @@ watch(() => route.query, value => {
 })
 const seriesList = ref([])
 api.get('/product/getClazz').then((res) => {
+  console.log(res.data.data)
   seriesList.value = res.data.data
 })
 // 设置多语言

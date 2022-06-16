@@ -25,11 +25,10 @@ import api from '/src/api/index.js'
 import { useRoute } from 'vue-router'
 import { changeDate } from '/src/until/index.js'
 import emitter from '/src/until/eventbus'
-emitter.emit('changeLoadingState', true)
 const route = useRoute()
 const news = ref({})
 api.get('/article/getDetail', { id:  route.params.id}).then((res) => {
   Object.assign(news.value, res.data.data)
-  setTimeout(() => emitter.emit('changeLoadingState', false), 200)
+  setTimeout(() => emitter.emit('changeLoadingState', false), 150)
 })
 </script>

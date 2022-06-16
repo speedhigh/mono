@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Layout from '../components/Layout/index.vue'
 import AboutLayout from '../views/about/components/Layout.vue'
+import emitter from '/src/until/eventbus'
 
 const routes = [
   {
@@ -194,6 +195,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  emitter.emit('changeLoadingState', true)
   // keep-alive
   if(!from.meta.keepAlive) window.scrollTo({ top: 0, behavior: "instant" })
   next()

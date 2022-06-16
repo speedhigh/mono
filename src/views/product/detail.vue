@@ -40,15 +40,15 @@
     <!-- その他の類似製品 -->
     <section class="p-[5.63rem] bg-gray-100">
       <h2 class="text-[2rem] font-bold text-center">{{ t('message.otherProducts') }}</h2>
-      <div class="mt-14 flex justify-center space-x-8">
-        <div 
-          v-for="item in otherList" 
-          :key="item.id" 
+      <div v-if="otherList.length > 0" class="mt-14 flex justify-center space-x-8">
+        <div
+          v-for="i in 6" 
+          :key="i" 
           class="w-60 h-72 p-5 bg-white shadow-md rounded-[1.25rem] cursor-pointer hover:opacity-80 hover:shadow-xl"
-          @click="changeOther(item.id)"
+          @click="changeOther(otherList[i].id)"
         >
-          <img :src="item.thumbnail" width="200" height="200" :alt="item.title" class="w-[200px] h-[200px] rounded">
-          <h3 class="mt-4 text-xl font-bold text-center line-1">{{ item.title }}</h3>
+          <img :src="otherList[i].thumbnail" width="200" height="200" :alt="otherList[i].title" class="w-[200px] h-[200px] rounded">
+          <h3 class="mt-4 text-xl font-bold text-center line-1">{{ otherList[i].title }}</h3>
         </div>
       </div>
     </section>
@@ -59,6 +59,7 @@
 import { ref } from 'vue'
 import api from '/src/api/index.js'
 import { useRoute, useRouter } from 'vue-router'
+import emitter from '/src/until/eventbus'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const route = useRoute()
@@ -70,7 +71,12 @@ const getData = (id) => {
   api.get('/product/getDetail', { id: id}).then((res) => {
     Object.assign(info.value, res.data.data)
     api.get('/product/getTuiJian', { clazz: res.data.data.clazz }).then((res) => {
-      otherList.value = res.data.data
+      if(res.data.code === 20000) {
+        otherList.value = res.data.data
+        emitter.emit('changeLoadingState', false)
+      } else {
+        setTimeout(() => emitter.emit('changeLoadingState', false), 300)
+      }
     })
   })
 }

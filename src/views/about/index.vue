@@ -70,6 +70,5 @@ import aboutF from '/src/assets/images/home/about_c.png'
 import emitter from '/src/until/eventbus'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
-emitter.emit('changeLoadingState', true)
-setTimeout(() => emitter.emit('changeLoadingState', false), 300)
+setTimeout(() => emitter.emit('changeLoadingState', false), 150)
 </script>

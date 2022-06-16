@@ -8,8 +8,11 @@
 <script setup>
 import { ref } from 'vue'
 import api from '/src/api/index.js'
+import emitter from '/src/until/eventbus'
+
 const msg = ref({})
 api.get('/article/getDetailByTitle', { title: '公司资质' }).then((res) => {
   Object.assign(msg.value, res.data.data)
+  setTimeout(() => emitter.emit('changeLoadingState', false), 50)
 })
 </script>
