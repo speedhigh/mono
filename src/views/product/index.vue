@@ -53,17 +53,23 @@
         :params="params"
       >
         <template #default="slotProps">
-          <div class="grid grid-cols-3 gap-[3.75rem]">
+          <div class="grid grid-cols-4 gap-x-8 gap-y-[1.87rem]">
             <div v-for="item in slotProps.list" :key="item.id">
-              <div class="rounded-xl border w-full h-[28.75rem] pt-12 pb-10 px-20 shadow">
-                <img :src="item.thumbnail" :alt="item.title" width="180" height="180" class="rounded-full h-[11.25rem] w-[11.25rem] shadow-lg mx-auto">
-                <h3 class="mt-[4.38rem] text-2xl font-bold line-1">{{ item.title }}</h3>
+              <div class="rounded-xl border border-gray-50 w-full h-96 pt-6 pb-5 px-10 shadow-md">
+                <img
+                  :src="item.thumbnail" 
+                  :alt="item.title" 
+                  width="180" 
+                  height="180" 
+                  class="rounded-full h-[11.25rem] w-[11.25rem] shadow-lg border border-gray-50 mx-auto"
+                >
+                <h3 class="mt-12 text-xl font-bold line-1">{{ item.title }}</h3>
                 <button 
-                  class="mt-10 w-full h-[3.38rem] bg-primary text-white rounded hover:border-2 hover:border-primary hover:bg-white hover:text-primary active:border-blue-200 active:text-blue-300"
+                  class="mt-6 w-[8.75rem] h-11 bg-primary text-white text-sm rounded hover:border-2 hover:border-primary hover:bg-white hover:text-primary active:border-blue-200 active:text-blue-300"
                   @click="$router.push('/product/detail/' + item.id)"
                 >
                   詳細を見る
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="-mt-0.5 h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
                   </svg>
                 </button>

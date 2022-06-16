@@ -11,10 +11,10 @@
       >
         <div 
           v-if="active_nmn.a"
-          class="w-full h-full bg-primary p-[4.5rem] text-white space-y-8"
+          class="w-full h-full bg-primary p-[4.5rem] text-white space-y-10"
         >
-          <h3 class="text-5xl text-center">{{ t('message.nmnTitleA') }}</h3>
-          <p class="text-2xl text-center leading-[2.13rem]">
+          <h3 class="text-4xl text-center">{{ t('message.nmnTitleA') }}</h3>
+          <p class="text-xl text-center leading-[2.13rem]">
             {{ t('message.nmnTextA') }}
           </p>
         </div>
@@ -29,10 +29,10 @@
       >
         <div 
           v-if="active_nmn.b"
-          class="w-full h-full bg-primary p-[4.5rem] text-white space-y-8"
+          class="w-full h-full bg-primary p-[4.5rem] text-white space-y-10"
         >
-          <h3 class="text-5xl text-center">{{ t('message.nmnTitleB') }}</h3>
-          <p class="text-2xl text-center leading-[2.13rem]">
+          <h3 class="text-4xl text-center">{{ t('message.nmnTitleB') }}</h3>
+          <p class="text-xl text-center leading-[2.13rem]">
             {{ t('message.nmnTextB') }}
           </p>
         </div>
@@ -47,10 +47,10 @@
       >
         <div 
           v-if="active_nmn.c"
-          class="w-full h-full bg-primary p-[4.5rem] text-white space-y-8"
+          class="w-full h-full bg-primary p-[4.5rem] text-white space-y-10"
         >
-          <h3 class="text-5xl text-center">{{ t('message.nmnTitleC') }}</h3>
-          <p class="text-2xl text-center leading-[2.13rem]">
+          <h3 class="text-4xl text-center">{{ t('message.nmnTitleC') }}</h3>
+          <p class="text-xl text-center leading-[2.13rem]">
             {{ t('message.nmnTextC') }}
           </p>
         </div>

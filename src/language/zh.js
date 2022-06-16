@@ -46,7 +46,7 @@ export default {
     searchTypeB: '按类别搜索',
     searchTypeC: '按关键字搜索',
     searchPlaceholder: '请输入产品名称或关键字',
-    capacity: '商品容量',
+    capacity: '商品容量/尺寸',
     maker: '制造商',
     faqs: '常见问题',
     shopOnline: '在线购买',

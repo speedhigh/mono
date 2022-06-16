@@ -1,11 +1,11 @@
 <template>
-  <section class="mt-[4.38rem] w-full h-[54.38rem] bg-[#F8FBFF] pt-[4.75rem] pb-24 relative">
+  <section class="mt-[4.38rem] w-full h-[53rem] bg-[#F8FBFF] pt-[4.75rem] pb-24 relative">
     <div class="relative w-[1200px] mx-auto">
       <p class="text-lg">{{ t('message.productTitleA') }} \</p>
-      <h2 class="mt-10 text-[2.13rem] text-primary">{{ t('message.productTitleB') }}</h2>
-      <div class="mt-12 grid grid-cols-3 gap-x-[2.63rem] gap-y-10">
+      <h2 class="mt-4 text-[2.13rem] text-primary">{{ t('message.productTitleB') }}</h2>
+      <div class="mt-14 grid grid-cols-3 gap-x-[2.63rem] gap-y-10">
         <div 
-          v-for="item in productList" 
+          v-for="item in productList"
           :key="item.id" 
           class="h-[12.5rem] rounded-lg relative cursor-pointer hover:shadow-lg hover:shadow-primary/50 hover:opacity-80"
           @click="$router.push('/product/detail/' + item.id)"
@@ -28,12 +28,12 @@
     </div>
     <!-- star1 -->
     <div
-      class="absolute left-10 bottom-[4.75rem] w-[16.76rem] h-[18.5rem] bg-primary opacity-10 p-3.5"
+      class="absolute left-10 bottom-[4.75rem] w-[16.76rem] h-[18.5rem] bg-primary opacity-10 p-4"
       style="clip-path: polygon(100% 0%, 90% 100%, 0% 40%)"
     >
       <div
         class="w-full h-full bg-[#F8FBFF]"
-        style="clip-path: polygon(100% 2%, 90% 98%, 3% 40%)"
+        style="clip-path: polygon(100% 2%, 90% 96%, 5% 40%)"
       />
     </div>
     <!-- star2 -->
@@ -48,7 +48,7 @@
     </div>
     <!-- star3 -->
     <div
-      class="absolute top-[8.75rem] left-[74.5rem] w-[5.5rem] h-[5.5rem] bg-primary opacity-10 p-3.5"
+      class="absolute top-24 left-[74.5rem] w-[5.5rem] h-[5.5rem] bg-primary opacity-10 p-3.5"
       style="clip-path: polygon(70% 0%, 100% 100%, 0% 80%)"
     >
       <div
@@ -63,12 +63,12 @@
     >
       <div
         class="w-full h-full bg-[#F8FBFF]"
-        style="clip-path: polygon(10% 0%, 90% 5%, 40% 82%)" 
+        style="clip-path: polygon(8% 0%, 90% 2%, 40% 78%)" 
       />
     </div>
     <!-- star5 -->
     <div
-      class="absolute right-[4.63rem] bottom-2 w-56 h-56 bg-primary opacity-10 p-3"
+      class="absolute right-[4.63rem] bottom-4 w-56 h-56 bg-primary opacity-10 p-3"
       style="clip-path: polygon(100% 0%, 90% 100%, 0% 40%)"
     >
       <div

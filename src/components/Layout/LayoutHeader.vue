@@ -46,7 +46,7 @@
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
             </svg>
             <h3 class="mt-2.5 font-bold">{{ t('message.searchTypeA') }}</h3>
-            <div class="w-96">
+            <div class=" w-72">
               <el-input
                 v-model="keyword"
                 :placeholder="t('message.searchPlaceholder')"
@@ -73,11 +73,11 @@
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
             </svg>
             <h3 class="ml-2 mt-2.5 font-bold">{{ t('message.searchTypeB') }}</h3>
-            <div class="mt-4 flex items-start space-x-14">
+            <div class="mt-5 flex items-start space-x-14">
               <div 
                 v-for="(item, index) in seriesList" 
                 :key="index" 
-                class="flex flex-col items-start flex-wrap h-60 flex-shrink-0"
+                class="flex flex-col items-start flex-wrap h-64 flex-shrink-0"
               >
                 <div
                   v-for="(tag, i) in item.seriesnames"
