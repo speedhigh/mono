@@ -25,6 +25,11 @@
   </div>
 </template>
 
+<script setup>
+import emitter from '/src/until/eventbus'
+emitter.emit('changeLoadingState', false)
+</script>
+
 <style scoped>
 .circles { 
 	background:#fff;

@@ -5,14 +5,25 @@
       ref="swiperRef" 
       trigger="click" 
       height="540px"
-      indicator-position="none" 
+      indicator-position="none"
+      :arrow="swiperList.length > 1 ? 'hover' : 'never'"
       @change="changeSwiper"
     >
       <el-carousel-item v-for="item in swiperList" :key="item.id">
-        <img :src="item.thumbnail" :alt="item.title" width="100%" height="540" class="w-full h-full">
+        <img 
+          :src="item.thumbnail" 
+          :alt="item.keyword" 
+          width="100%" 
+          height="540" 
+          class="w-full h-full cursor-pointer"
+          @click="$router.push(item.href)"
+        >
       </el-carousel-item>
     </el-carousel>
-    <div class="absolute bottom-5 inset-x-0 flex items-center justify-center space-x-6">
+    <div
+      v-if="swiperList.length > 1"
+      class="absolute bottom-5 inset-x-0 flex items-center justify-center space-x-6"
+    >
       <div
         v-for="i in swiperList.length"
         :key="i"

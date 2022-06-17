@@ -1,20 +1,29 @@
 <template>
   <main>
     <!-- 检索分类 -->
-    <section class="pt-10 pb-5 space-y-2.5 w-[1200px] mx-auto">
-      <div v-for="(item, index) in menuList" :key="index">
-        <div class="flex items-start space-x-8">
-          <div class="flex-shrink-0 mb-5">
-            <p class="text-[1.38rem] font-bold">{{ t('message.searchTypeB') }}</p>
-            <p class="mt-2 text-center">({{ item.clazzname }})</p>
+    <section class="pt-10 pb-5 w-[1200px] mx-auto">
+      <div class="flex items-start space-x-12">
+        <p class="flex-shrink-0 text-[1.38rem] font-bold">{{ t('message.searchTypeB') }}</p>
+        <div class="-mt-3 w-full">
+          <div class="flex items-end space-x-10 border-b w-full">
+            <div v-for="(item, index) in menuList" :key="index" class="cursor-pointer">
+              <p
+                class="relative"
+                :class="clazzActive === index ? 'text-2xl font-bold border-b-4 border-primary leading-10 pb-1' : 'text-lg leading-10 pb-1'"
+                @click="changeClazzTab(index)"
+              >
+                {{ item.clazzname }}
+                <div v-if="$route.query.clazzname === item.clazzname" class="absolute top-0 -right-2 w-1.5 h-1.5 rounded-full bg-primary" />
+              </p>
+            </div>
           </div>
-          <div class="flex-grow w-full flex items-center flex-wrap">
+          <div class="mt-6 w-full flex items-center flex-wrap">
             <button
-              v-for="(series, i) in item.seriesnames"
+              v-for="(series, i) in menuList[clazzActive].seriesnames"
               :key="i"
-              class="ml-[1.88rem] mb-5 px-5 py-2 rounded-3xl border hover:border-primary"
-              :class="$route.query.clazzname === item.clazzname && $route.query.seriesname === series ? 'text-white bg-primary border-primary' : 'text-gray-600 hover:text-primary border-gray-400'"
-              @click="selOption(item.clazzname, series)"
+              class="mr-[1.88rem] mb-5 px-5 py-2 rounded-3xl border hover:border-primary"
+              :class="$route.query.clazzname === menuList[clazzActive].clazzname && $route.query.seriesname === series ? 'text-white bg-primary border-primary' : 'text-gray-600 hover:text-primary border-gray-400'"
+              @click="selOption(menuList[clazzActive].clazzname, series)"
             >
               {{ series }}
             </button>
@@ -22,6 +31,7 @@
         </div>
       </div>
     </section>
+
     <!-- 搜索 -->
     <section class="h-[7.5rem] bg-gray-100">
       <div class="w-[1200px] h-full mx-auto flex items-center space-x-10">
@@ -95,17 +105,25 @@ import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const route = useRoute()
 const router = useRouter()
+
+
 // 获取类别
-const menuList = ref()
-api.get('/product/getClazz').then((res) => {
-  if(res.data.code === 20000) {
+const clazzActive = ref(sessionStorage.getItem("clazzActive") ? +sessionStorage.getItem("clazzActive") : 0)
+// 切换类别
+const changeClazzTab = function(index) {
+  sessionStorage.setItem('clazzActive', index)
+  clazzActive.value = index
+}
+const menuList = ref(sessionStorage.getItem("clazz") ? JSON.parse(sessionStorage.getItem("clazz")): [])
+if(!sessionStorage.getItem("clazz")) {
+  api.get('/product/getClazz').then((res) => {
     menuList.value = res.data.data
     emitter.emit('changeLoadingState', false)
-  } else {
-    setTimeout(() => emitter.emit('changeLoadingState', false), 300)
-  }
-})
-const keyword = ref(route.query.keyword)
+  })
+} else {
+  setTimeout(() => emitter.emit('changeLoadingState', false), 200)
+}
+const keyword = ref(route.query.keyword ? route.query.keyword : '')
 const params = ref({
   keyword: route.query.keyword,
   clazzname: route.query.clazzname,
@@ -122,5 +140,6 @@ const selOption = function(clazzname, series) {
 
 watch(() => route.query, value => {
   setTimeout(() => emitter.emit('changeLoadingState', false), 100)
+  clazzActive.value = sessionStorage.getItem("clazzActive") ? +sessionStorage.getItem("clazzActive") : 0
 })
 </script>

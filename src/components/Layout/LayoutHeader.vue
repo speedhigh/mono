@@ -37,11 +37,12 @@
         </div>
         <div
           v-if="isActive.product"
-          class="absolute top-[100px] bg-[rgba(255,255,255,0.9)] backdrop-blur-md shadow rounded-b-md inset-x-0 py-10 leading-none flex justify-center space-x-32"
+          class="absolute top-[100px] bg-[rgba(255,255,255,0.9)] backdrop-blur-md shadow rounded-b-md inset-x-0 py-10 leading-none flex justify-center space-x-24"
           @mouseenter="isActive.product = true"
         >
+        <!--   v-if="isActive.product" -->
           <!-- 精确搜索 -->
-          <div>
+          <div class="pl-56 pr-12">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
             </svg>
@@ -68,26 +69,30 @@
             </div>
           </div>
           <!-- 按类别搜索 -->
-          <div>
-            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-5 w-5 text-primary" viewBox="0 0 20 20" fill="currentColor">
+          <div class="w-1/5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
             </svg>
-            <h3 class="ml-2 mt-2.5 font-bold">{{ t('message.searchTypeB') }}</h3>
-            <div class="mt-5 flex items-start space-x-14">
-              <div 
-                v-for="(item, index) in seriesList" 
-                :key="index" 
-                class="flex flex-col items-start flex-wrap h-64 flex-shrink-0"
-              >
-                <div
-                  v-for="(tag, i) in item.seriesnames"
-                  :key="i"
-                  class="leading-7 cursor-pointer hover:text-white hover:bg-primary active:bg-blue-400 rounded px-2 mb-2 flex-shrink-0 mr-2 text-center"
-                  :class="$route.query.clazzname === item.clazzname && $route.query.seriesname === tag ? 'text-white bg-primary' : 'text-gray-600'"
-                  @click="$router.push('/product/list?clazzname=' + item.clazzname + '&seriesname=' + tag); isActive.product = false"
+            <h3 class="mt-2.5 font-bold">{{ t('message.searchTypeB') }}</h3>
+            <div class="mt-5 flex items-end space-x-8 border-b">
+              <div v-for="(item, index) in seriesList" :key="index" class="cursor-pointer">
+                <p
+                  :class="clazzActive === index ? 'text-2xl font-bold border-b-4 border-primary leading-10 pb-1' : 'text-lg leading-10 pb-1'"
+                  @click="changeClazzTab(index)"
                 >
-                  {{ tag }}
-                </div>
+                  {{ item.clazzname }}
+                </p>
+              </div>
+            </div>
+            <div  class="mt-2 flex flex-col flex-wrap h-60 flex-shrink-0 py-2 rounded-lg">
+              <div 
+                v-for="(tag, i) in seriesList[clazzActive].seriesnames" 
+                :key="i"
+                class="leading-7 cursor-pointer hover:text-white hover:bg-primary active:bg-blue-400 rounded px-2 mb-2 mr-4"
+                :class="$route.query.clazzname === seriesList[clazzActive].clazzname && $route.query.seriesname === tag ? 'text-white bg-primary' : 'text-gray-600'"
+                @click="$router.push('/product/list?clazzname=' + seriesList[clazzActive].clazzname + '&seriesname=' + tag); isActive.product = false"
+              >
+               {{ tag }}
               </div>
             </div>
           </div>
@@ -177,11 +182,18 @@ const keyword = ref('')
 watch(() => route.query, value => {
   keyword.value = value.keyword ? value.keyword : ''
 })
-const seriesList = ref([])
-api.get('/product/getClazz').then((res) => {
-  console.log(res.data.data)
-  seriesList.value = res.data.data
-})
+const clazzActive = ref(sessionStorage.getItem("clazzActive") ? +sessionStorage.getItem("clazzActive") : 0)
+const seriesList = ref(sessionStorage.getItem("clazz") ? JSON.parse(sessionStorage.getItem("clazz")): [])
+if(!sessionStorage.getItem("clazz")) {
+  api.get('/product/getClazz').then((res) => {
+    sessionStorage.setItem("clazz",JSON.stringify(res.data.data))
+    seriesList.value = res.data.data
+  })
+}
+const changeClazzTab = function(index) {
+  clazzActive.value = index
+  sessionStorage.setItem('clazzActive', index)
+}
 // 设置多语言
 const { proxy } = getCurrentInstance()
 const languageDef = ref(localStorage.getItem('language') ? localStorage.getItem('language') : 'ja')
@@ -194,6 +206,7 @@ const changeLanguage = (language) => {
   if(localStorage.getItem('language') !== language) {
     localStorage.setItem('language',language)
     proxy.$i18n.locale = language
+    localStorage.removeItem("clazz")
     router.go(0)
   }
 }

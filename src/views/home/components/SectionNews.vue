@@ -3,3 +3,5 @@
     <base-news :showBtn="true" />
   </section>
 </template>
+<script setup>
+</script>
