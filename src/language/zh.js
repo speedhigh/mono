@@ -54,5 +54,9 @@ export default {
     faqs: '常见问题',
     shopOnline: '在线购买',
     otherProducts: '其他类似产品',
+    // product-----clazz
+    jkyp: '健康产品',
+    ylqx: '医疗设备',
+    fzyj: '福利设备'
   }
 }

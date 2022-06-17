@@ -55,5 +55,9 @@ export default {
     faqs: 'よくある質問',
     shopOnline: 'オンライン買い物',
     otherProducts: 'その他の類似製品',
+    // product-----clazz
+    jkyp: '健康製品',
+    ylqx: '医療機器',
+    fzyj: '福祉用具'
   }
 }
