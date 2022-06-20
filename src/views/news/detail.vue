@@ -4,7 +4,7 @@
       <div class="w-[1200px] mx-auto">
         <h1 class="text-center text-[2rem] font-bold">{{ news.title }}</h1>
         <div class="mt-8 flex items-center justify-end space-x-[1.88rem]">
-          <button class="px-2 leading-6 bg-primary text-white text-sm rounded">新闻资讯</button>
+          <button class="px-2 leading-6 bg-primary text-white text-sm rounded">{{ t('message.newsTag') }}</button>
           <p class="text-base ">発表日：{{ changeDate(news.inserttime) }}</p>
         </div>
       </div>
@@ -25,6 +25,8 @@ import api from '/src/api/index.js'
 import { useRoute } from 'vue-router'
 import { changeDate } from '/src/until/index.js'
 import emitter from '/src/until/eventbus'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 const route = useRoute()
 const news = ref({})
 api.get('/article/getDetail', { id:  route.params.id}).then((res) => {

@@ -58,6 +58,8 @@ export default {
     // product-----clazz
     jkyp: '健康製品',
     ylqx: '医療機器',
-    fzyj: '福祉用具'
+    fzyj: '福祉用具',
+    // news
+    newsTag: 'ニュース',
   }
 }

@@ -57,6 +57,8 @@ export default {
     // product-----clazz
     jkyp: '健康产品',
     ylqx: '医疗设备',
-    fzyj: '福利设备'
+    fzyj: '福利设备',
+    // news
+    newsTag: '新闻资讯',
   }
 }

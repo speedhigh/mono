@@ -27,7 +27,7 @@ import { ref, watch } from 'vue'
 import { pickBy } from 'lodash'
 import api from '/src/api/index.js'
 import { useI18n } from 'vue-i18n'
-// import emitter from '/src/until/eventbus'
+import emitter from '/src/until/eventbus'
 export default {
   props: {
     size: {
@@ -52,7 +52,7 @@ export default {
     const total = ref(0)
     const askApi = function(more = true) {
       loading.value = true
-      // emitter.emit('changeLoadingState', true)
+      emitter.emit('changeLoadingState', true)
       let newParams = {}
       if(!more) {
         currentPage.value = 1
@@ -67,7 +67,7 @@ export default {
           localList.value = []
         }
         loading.value = false
-        // emitter.emit('changeLoadingState', false)
+        emitter.emit('changeLoadingState', false)
       })
     }
     askApi()

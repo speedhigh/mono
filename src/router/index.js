@@ -195,7 +195,9 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  emitter.emit('changeLoadingState', true)
+  if(to.path !== '/product/list') {
+    emitter.emit('changeLoadingState', true)
+  }
   // keep-alive
   if(!from.meta.keepAlive) window.scrollTo({ top: 0, behavior: "instant" })
   next()

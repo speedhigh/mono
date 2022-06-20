@@ -7,7 +7,7 @@
     <layout-header />
     <!-- content / bredcrumb -->
     <div>
-      <div class="fixed top-[6.25rem] inset-x-0 bg-white shadow">
+      <div class="fixed top-[6.25rem] inset-x-0 bg-white shadow z-50">
         <layout-breadcrumb />
       </div>
       <router-view></router-view>

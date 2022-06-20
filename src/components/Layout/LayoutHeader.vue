@@ -10,7 +10,7 @@
       height="60"
       alt="HSD国际株式会社" 
       class="hover:cursor-pointer" 
-      @click="jumpTo('/')"
+      @click="$router.push('/')"
     >
     <!-- menu -->
     <div class="ml-auto flex items-center space-x-3">
@@ -18,7 +18,7 @@
       <div 
         class="menu-item"
         :class="{ 'menu-item-active': $route.meta.name === 'Home' }"
-        @click="jumpTo('/')"
+        @click="$router.push('/')"
       >
         HOME
       </div>
@@ -28,15 +28,15 @@
           class="menu-item flex items-center space-x-0.5"
           :class="{'text-blue-400' : isActive.product, 'menu-item-active': $route.meta.name === 'Product'}"
           @mouseenter="isActive.product = true"
-          @click="$router.push('/product/list'); isActive.product = !isActive.product"
+          @click="toProduct"
         >
           <p>{{ t('message.product') }}</p>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" :class="{'transition duration-200 rotate-180' : isActive.product}" viewBox="0 0 20 20" fill="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" :class="{'transition duration-200 rotate-180' : isActive.product && $route.path !== '/product/list' }" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
           </svg>
         </div>
         <div
-          v-if="isActive.product"
+          v-if="isActive.product && $route.path !== '/product/list'"
           class="absolute top-[100px] bg-[rgba(255,255,255,0.9)] backdrop-blur-md shadow rounded-b-md inset-x-0 py-10 leading-none flex justify-center space-x-24"
           @mouseenter="isActive.product = true"
         >
@@ -52,7 +52,7 @@
                 v-model="keyword"
                 :placeholder="t('message.searchPlaceholder')"
                 class="mt-5 h-9"
-                @keyup.enter.native="jumpTo('/product/list?keyword=' + keyword)"
+                @keyup.enter.native="toSearch(keyword)"
               >
                 <template #suffix>
                   <el-icon
@@ -60,7 +60,7 @@
                     :color="isActive.search ? '#1f2937' : '#9ca3af'"
                     @mouseenter="isActive.search = true"
                     @mouseleave="isActive.search = false"
-                    @click="jumpTo('/product/list?keyword=' + keyword)"
+                    @click="toSearch(keyword)"
                   >
                     <search />
                   </el-icon>
@@ -75,24 +75,24 @@
             </svg>
             <h3 class="mt-2.5 font-bold">{{ t('message.searchTypeB') }}</h3>
             <div class="mt-5 flex items-end space-x-8 border-b">
-              <div v-for="(item, index) in seriesList" :key="index" class="cursor-pointer">
+              <div v-for="(item, index) in clazzNames" :key="index" class="cursor-pointer">
                 <p
                   :class="clazzActive === index ? 'text-2xl font-bold border-b-4 border-primary leading-10 pb-1' : 'text-lg leading-10 pb-1'"
-                  @click="changeClazzTab(index)"
+                  @click="clazzActive = index"
                 >
-                  {{ item.clazzname }}
+                  {{ item }}
                 </p>
               </div>
             </div>
             <div  class="mt-2 flex flex-col flex-wrap h-60 flex-shrink-0 py-2 rounded-lg">
               <div 
-                v-for="(tag, i) in seriesList[clazzActive].seriesnames" 
+                v-for="(series, i) in clazzList[clazzActive].seriesnames"
                 :key="i"
                 class="leading-7 cursor-pointer hover:text-white hover:bg-primary active:bg-blue-400 rounded px-2 mb-2 mr-4"
-                :class="$route.query.clazzname === seriesList[clazzActive].clazzname && $route.query.seriesname === tag ? 'text-white bg-primary' : 'text-gray-600'"
-                @click="$router.push('/product/list?clazzname=' + seriesList[clazzActive].clazzname + '&seriesname=' + tag); isActive.product = false"
+                :class="$route.query.clazzname === clazzList[clazzActive].clazzname && $route.query.seriesname === series ? 'text-white bg-primary' : 'text-gray-600'"
+                @click="selOption(clazzList[clazzActive].clazzname, series)"
               >
-               {{ tag }}
+               {{ series }}
               </div>
             </div>
           </div>
@@ -102,7 +102,7 @@
       <div 
         class="menu-item hover:bg-blue-100"
         :class="{ 'menu-item-active' : $route.meta.name === 'News' }"
-        @click="jumpTo('/news')"
+        @click="$router.push('/news')"
       >
         <p>{{ t('message.news') }}</p>
       </div>
@@ -110,7 +110,7 @@
       <div 
         class="menu-item hover:bg-blue-100"
         :class="{ 'menu-item-active' : $route.meta.name === 'About' }"
-        @click="jumpTo('/about')"
+        @click="$router.push('/about')"
       >
         <p>{{ t('message.about') }}</p>
       </div>
@@ -163,37 +163,60 @@ import api from '/src/api/index.js'
 import logoImg from '/src/assets/images/logo.png'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
-
 const router = useRouter()
 const route = useRoute()
-// 点击导航栏跳转
-const jumpTo = (url) => {
-  isActive.product = false
-  router.push(url)
-}
+
 // 管理导航栏中有子列表选项的状态
 const isActive = reactive({
   product: false,
   language: false,
   search: false
 })
+
 // 产品信息
 const keyword = ref('')
-watch(() => route.query, value => {
-  keyword.value = value.keyword ? value.keyword : ''
-})
 const clazzActive = ref(sessionStorage.getItem("clazzActive") ? +sessionStorage.getItem("clazzActive") : 0)
-const seriesList = ref(sessionStorage.getItem("clazz") ? JSON.parse(sessionStorage.getItem("clazz")): [])
-if(!sessionStorage.getItem("clazz")) {
+const clazzNames = ref([])
+const clazzList = ref([])
+const getClazz = function() {
   api.get('/product/getClazz').then((res) => {
-    sessionStorage.setItem("clazz",JSON.stringify(res.data.data))
-    seriesList.value = res.data.data
+    if(res.data.code === 20000) {
+      clazzNames.value = res.data.data.map(item => item.clazzname)
+      clazzList.value = res.data.data
+      sessionStorage.setItem("clazzList", JSON.stringify(res.data.data))
+      sessionStorage.setItem("clazzNames", JSON.stringify(clazzNames.value))
+    }
   })
 }
-const changeClazzTab = function(index) {
-  clazzActive.value = index
-  sessionStorage.setItem('clazzActive', index)
+if(sessionStorage.getItem("clazzList") && sessionStorage.getItem("clazzNames")) {
+  clazzNames.value = JSON.parse(sessionStorage.getItem("clazzNames"))
+  clazzList.value = JSON.parse(sessionStorage.getItem("clazzList"))
+} else {
+  getClazz()
 }
+watch(() => clazzActive.value, value => {
+  sessionStorage.setItem('clazzActive', value)
+})
+const toProduct = function() {
+  sessionStorage.removeItem("keyword")
+  sessionStorage.removeItem("seriesname")
+  sessionStorage.setItem('clazzname', clazzNames.value[0])
+  router.push('/product/list')
+}
+const toSearch = function(keyword) {
+  sessionStorage.removeItem("clazzname")
+  sessionStorage.removeItem("seriesname")
+  sessionStorage.setItem('keyword', keyword)
+  router.push('/product/list')
+}
+const selOption = function(clazzname, seriesname) {
+  sessionStorage.removeItem("keyword")
+  sessionStorage.setItem('clazzname', clazzname)
+  sessionStorage.setItem('seriesname', seriesname)
+  router.push('/product/list')
+}
+
+
 // 设置多语言
 const { proxy } = getCurrentInstance()
 const languageDef = ref(localStorage.getItem('language') ? localStorage.getItem('language') : 'ja')
@@ -206,8 +229,18 @@ const changeLanguage = (language) => {
   if(localStorage.getItem('language') !== language) {
     localStorage.setItem('language',language)
     proxy.$i18n.locale = language
-    localStorage.removeItem("clazz")
-    router.go(0)
+    sessionStorage.removeItem("clazzNames")
+    sessionStorage.removeItem("clazzList")
+    sessionStorage.removeItem("keyword")
+    sessionStorage.removeItem("clazzname")
+    sessionStorage.removeItem("seriesname")
+    getClazz()
+    if(route.path === '/product/list') {
+      alert('语言已修改，刷新后即可渲染')
+      router.go(0)
+    } else {
+      router.go(0)
+    }
   }
 }
 </script>
