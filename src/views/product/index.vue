@@ -95,14 +95,10 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
-// import api from '/src/api/index.js'
-// import { useRoute, useRouter } from 'vue-router'
+import { ref } from 'vue'
 import emitter from '/src/until/eventbus'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
-// const route = useRoute()
-// const router = useRouter()
 
 emitter.emit('changeLoadingState', false)
 

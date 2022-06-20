@@ -27,7 +27,7 @@
         <div
           class="menu-item flex items-center space-x-0.5"
           :class="{'text-blue-400' : isActive.product, 'menu-item-active': $route.meta.name === 'Product'}"
-          @mouseenter="isActive.product = true"
+          @mouseenter="isActive.product = true; keyword = ''"
           @click="toProduct"
         >
           <p>{{ t('message.product') }}</p>
@@ -38,16 +38,16 @@
         <div
           v-if="isActive.product && $route.path !== '/product/list'"
           class="absolute top-[100px] bg-[rgba(255,255,255,0.9)] backdrop-blur-md shadow rounded-b-md inset-x-0 py-10 leading-none flex justify-center space-x-24"
-          @mouseenter="isActive.product = true"
+          @mouseenter="isActive.product = true; keyword = ''"
         >
-        <!--   v-if="isActive.product" -->
+        <!-- v-if="isActive.product" -->
           <!-- 精确搜索 -->
           <div class="pl-56 pr-12">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
             </svg>
             <h3 class="mt-2.5 font-bold">{{ t('message.searchTypeA') }}</h3>
-            <div class=" w-72">
+            <div class="w-72">
               <el-input
                 v-model="keyword"
                 :placeholder="t('message.searchPlaceholder')"
@@ -235,12 +235,8 @@ const changeLanguage = (language) => {
     sessionStorage.removeItem("clazzname")
     sessionStorage.removeItem("seriesname")
     getClazz()
-    if(route.path === '/product/list') {
-      alert('语言已修改，刷新后即可渲染')
-      router.go(0)
-    } else {
-      router.go(0)
-    }
+    if(route.path === '/product/list') alert(t('message.languageText'))
+    router.go(0)
   }
 }
 </script>
