@@ -12,6 +12,7 @@
 <script setup>
 import { changeDate } from '/src/until/index.js'
 import { useI18n } from 'vue-i18n'
+import { defineProps } from 'vue'
 const { t } = useI18n()
 const props = defineProps({
   id: { type: Number, required: true },
