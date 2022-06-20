@@ -12,7 +12,7 @@
         <p class="text-lg">{{ t('message.productTitleA') }} \</p>
         <h2 class="mt-4 text-[2.13rem] text-primary">{{ t('message.productTitleC') }}</h2>
         <p class="mt-7 text-base leading-7 h-28">{{ t('message.medicalTextA') }}</p>
-        <el-button type="primary" class="mt-6 min-w-[10rem] h-11" size="large">{{ t('message.seeAll') }}</el-button>
+        <el-button type="primary" class="mt-6 min-w-[10rem] h-11" size="large" @click="$router.push('/product/detail/47')">{{ t('message.seeAll') }}</el-button>
       </div>
     </div>
     <!-- 家庭用医療機器 -->
@@ -21,7 +21,7 @@
         <p class="text-lg">{{ t('message.productTitleA') }} \</p>
         <h2 class="mt-4 text-[2.13rem] text-primary">{{ t('message.productTitleD') }}</h2>
         <p class="mt-7 text-base leading-7 h-28">{{ t('message.medicalTextB') }}</p>
-        <el-button type="primary" class="mt-6 min-w-[10rem] h-11" size="large">{{ t('message.seeAll') }}</el-button>
+        <el-button type="primary" class="mt-6 min-w-[10rem] h-11" size="large" @click="$router.push('/product/detail/76')">{{ t('message.seeAll') }}</el-button>
       </div>
       <div 
         class="w-[36.25rem] h-[18.75rem] flex-shrink-0 rounded-lg py-5 pl-28 pr-24" 
