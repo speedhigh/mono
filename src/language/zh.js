@@ -25,6 +25,9 @@ export default {
     security: '安全策略',
     precautions: '使用注意事项',
     footerText: '© 2022 HSD国际株式会社。 保留所有权利。',
+    aboutWeb: '关于本网站',
+    infoSecurity: '信息安全基本方针',
+    privacy: '隐私政策',
     // home
     newsPublish: '新闻发布',
     nmnTitle: 'NMN产品特点',
