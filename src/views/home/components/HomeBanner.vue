@@ -16,7 +16,7 @@
           width="100%" 
           height="540" 
           class="w-full h-full cursor-pointer"
-          @click="$router.push(item.href)"
+          @click="jumpTo(item.href, index)"
         >
       </el-carousel-item>
     </el-carousel>
@@ -38,6 +38,8 @@
 <script setup>
 import { ref } from 'vue'
 import api from '/src/api/index.js'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 // 轮播图相关
 const active = ref(0)
@@ -52,4 +54,8 @@ const swiperList = ref([])
 api.get('/index/getLunBo').then((res) => {
   swiperList.value = res.data.data
 })
+
+const jumpTo = function(url, index) {
+  router.push(url)
+}
 </script>

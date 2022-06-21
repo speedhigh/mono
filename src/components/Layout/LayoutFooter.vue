@@ -15,7 +15,7 @@
           <div class="flex items-center justify-end space-x-2.5">
             <p 
               class="hover:font-bold cursor-pointer"
-              :class="{'font-bold': $route.path === '/about'}"
+              :class="{'font-bold': $route.meta.name === 'About'}"
               @click="$router.push('/about')"
             >
               {{ t('message.about') }}

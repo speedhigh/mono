@@ -115,7 +115,8 @@
         <p>{{ t('message.about') }}</p>
       </div>
       <!-- 语言 -->
-      <div 
+      <div
+        v-if="false"
         class="relative" 
         @mouseleave="isActive.language = false"
       >

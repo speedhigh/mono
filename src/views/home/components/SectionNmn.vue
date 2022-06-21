@@ -11,7 +11,7 @@
       >
         <div
           v-if="active_nmn.a"
-          class="absolute inset-0 w-full h-full bg-[rgba(0,0,0,0.85)] p-[4.5rem] text-white space-y-10"
+          class="absolute inset-0 w-full h-full bg-primary p-[4.5rem] text-white space-y-10"
         >
           <h3 class="text-4xl text-center">{{ t('message.nmnTitleA') }}</h3>
           <p class="text-xl text-center leading-[2.13rem]">{{ t('message.nmnTextA') }}</p>
@@ -27,7 +27,7 @@
       >
         <div
           v-if="active_nmn.b"
-          class="absolute inset-0 w-full h-full bg-[rgba(0,0,0,0.85)] p-[4.5rem] text-white space-y-10"
+          class="absolute inset-0 w-full h-full bg-primary p-[4.5rem] text-white space-y-10"
         >
           <h3 class="text-4xl text-center">{{ t('message.nmnTitleB') }}</h3>
           <p class="text-xl text-center leading-[2.13rem]">{{ t('message.nmnTextB') }}</p>
@@ -43,7 +43,7 @@
       >
         <div
           v-if="active_nmn.c"
-          class="absolute inset-0 w-full h-full bg-[rgba(0,0,0,0.85)] p-[4.5rem] text-white space-y-10"
+          class="absolute inset-0 w-full h-full bg-primary p-[4.5rem] text-white space-y-10"
         >
           <h3 class="text-4xl text-center">{{ t('message.nmnTitleC') }}</h3>
           <p class="text-xl text-center leading-[2.13rem]">{{ t('message.nmnTextC') }}</p>
