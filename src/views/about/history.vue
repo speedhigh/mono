@@ -36,7 +36,7 @@ const { t } = useI18n()
 
 const msg = ref({})
 api.get('/article/getDetailByTitle', { title: t('message.aboutHistory') }).then((res) => {
-  Object.assign(msg.value, res.data.data)
+  if(res.data.code === 20000) Object.assign(msg.value, res.data.data)
   setTimeout(() => emitter.emit('changeLoadingState', false), 50)
 })
 </script>
