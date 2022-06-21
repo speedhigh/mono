@@ -116,6 +116,21 @@ const routes = [
           breadcrumb : [{ text: 'message.home', url: '/' }, { text: 'message.about', url: '/about' }]
         }
       },
+      // footer--关于本网站
+      {
+        path: '/about/website',
+        component: () => import('../views/about/website/index.vue')
+      },
+      // footer--信息安全基本方针
+      {
+        path: '/about/security',
+        component: () => import('../views/about/security/index.vue')
+      },
+      // footer--隐私政策
+      {
+        path: '/about/privacy',
+        component: () => import('../views/about/privacy/index.vue')
+      },
       // 关于我们--layout
       {
         path: '/about/layout',
@@ -195,7 +210,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if(to.path !== '/product/list') {
+  if(to.path !== '/product/list' && to.meta.name !== 'About') {
     emitter.emit('changeLoadingState', true)
   }
   // keep-alive

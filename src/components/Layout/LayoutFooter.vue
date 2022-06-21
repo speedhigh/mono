@@ -4,13 +4,31 @@
       <div class="w-[1200px] h-full mx-auto flex items-center">
         <img :src="logoImg" alt="HSD国际株式会社" width="266" height="60">
         <div class="ml-auto space-y-4">
-          <p>
-            <!-- <span class="hover:font-bold">关于使用</span>
-            <span class="ml-8 hover:font-bold">安全政策</span>
-            <span class="ml-8 hover:font-bold">使用注意事项</span> -->
-            <span>{{ t('message.aboutUse') }}</span>
-            <span class="ml-8">{{ t('message.security') }}</span>
-            <span class="ml-8">{{ t('message.precautions') }}</span>
+          <p class="cursor-pointer">
+            <!-- 关于本网站 -->
+            <span
+              class="hover:font-bold"
+              :class="{'font-bold': $route.path === '/about/website'}"
+              @click="$router.push('/about/website')"
+            >
+              {{ t('message.aboutWeb') }}
+            </span>
+            <!-- 信息安全基本方针 -->
+            <span 
+              class="ml-8 hover:font-bold"
+              :class="{'font-bold': $route.path === '/about/security'}"
+              @click="$router.push('/about/security')"
+            >
+              {{ t('message.infoSecurity') }}
+            </span>
+            <!-- 隐私政策 -->
+            <span 
+              class="ml-8 hover:font-bold"
+              :class="{'font-bold': $route.path === '/about/privacy'}"
+              @click="$router.push('/about/privacy')"
+            >
+              {{ t('message.privacy') }}
+            </span>
           </p>
           <div class="flex items-center justify-end space-x-2.5">
             <p 

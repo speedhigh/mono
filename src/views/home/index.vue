@@ -24,5 +24,5 @@ import SectionProduct from './components/SeciontProduct.vue'
 import SectionMedical from './components/SectionMedical.vue'
 import SectionAbout from './components/SectionAbout.vue'
 import emitter from '/src/until/eventbus'
-setTimeout(() => emitter.emit('changeLoadingState', false), 100)
+setTimeout(() => emitter.emit('changeLoadingState', false), 150)
 </script>

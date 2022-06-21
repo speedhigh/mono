@@ -28,7 +28,7 @@ export default {
     footerText: '© 2022 HSDインターナショナル株式会社。すべての権利を保持する。',
     aboutWeb: 'このサイトについて',
     infoSecurity: '情報セキュリティ基本方針',
-    privacy: '個人情報保護方針',
+    privacy: '個人情報保護方針（プライバシーポリシー）',
     // home
     newsPublish: 'ニュースリリース',
     nmnTitle: 'NMN製品の特徴',
