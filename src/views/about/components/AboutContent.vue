@@ -21,3 +21,9 @@ api.get('/aboutus/getDetail', { title: t(props.text) }).then((res) => {
   setTimeout(() => showLoading.value = false, 50)
 })
 </script>
+
+<style>
+img {
+  @apply mx-auto
+}
+</style>

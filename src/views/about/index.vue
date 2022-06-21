@@ -41,7 +41,7 @@
           <p class="text-lg text-white text-center leading-[50px]">{{ t('message.aboutPharmacist') }}</p>
         </div>
       </div>
-      <!-- 沿革历史 -->
+      <!-- 沿革历史
       <div
         class="w-full h-[13.75rem] rounded-lg cursor-pointer hover:opacity-80 relative" 
         @click="$router.push('/about/history')"
@@ -51,6 +51,7 @@
           <p class="text-lg text-white text-center leading-[50px]">{{ t('message.aboutHistory') }}</p>
         </div>
       </div>
+      -->
       <!-- 公司资质 -->
       <div
         class="w-full h-[13.75rem] rounded-lg cursor-pointer hover:opacity-80 relative" 
@@ -61,7 +62,7 @@
           <p class="text-lg text-white text-center leading-[50px]">{{ t('message.aboutusB') }}</p>
         </div>
       </div>
-      <!-- 招聘信息 -->
+      <!-- 招聘信息
       <div
         class="w-full h-[13.75rem] rounded-lg cursor-pointer hover:opacity-80 relative" 
         @click="$router.push('/about/recruit')"
@@ -71,6 +72,7 @@
           <p class="text-lg text-white text-center leading-[50px]">{{ t('message.aboutusC') }}</p>
         </div>
       </div>
+      -->
     </div>
   </div>
 </template>

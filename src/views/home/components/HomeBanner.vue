@@ -12,11 +12,11 @@
       <el-carousel-item v-for="item in swiperList" :key="item.id">
         <img 
           :src="item.thumbnail" 
-          :alt="item.keyword" 
+          :alt="item.title" 
           width="100%" 
           height="540" 
           class="w-full h-full cursor-pointer"
-          @click="jumpTo(item.href, index)"
+          @click="jumpTo(item.href, item.keyword)"
         >
       </el-carousel-item>
     </el-carousel>

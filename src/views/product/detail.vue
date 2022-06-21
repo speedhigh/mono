@@ -6,7 +6,7 @@
         <div class="flex-grow">
           <button class="h-10 border border-primary rounded leading-9 text-primary text-center px-4 cursor-default">{{ info.series }}</button>
           <h1 class="mt-7 text-[2rem] font-bold line-1">{{ info.title }}</h1>
-          <h3 class="mt-4 text-2xl font-bold">{{ info.clazz }}</h3>
+          <p class="mt-4 text-2xl font-bold">{{ info.clazz }}</p>
           <div class="mt-12">
             <div class="grid grid-cols-2 border-b">
               <div class="col-span-1 text-lg text-center leading-[3rem] bg-gray-100">{{ t('message.capacity') }}</div>
