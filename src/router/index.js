@@ -20,7 +20,7 @@ const routes = [
         component:() => import('../views/home/index.vue'),
         meta: { 
           name: 'Home',
-          keepAlive: true
+          // keepAlive: true
         }
       }
     ]
@@ -55,7 +55,7 @@ const routes = [
         component:() => import('../views/product/index.vue'),
         meta: {
           name: 'Product',
-          keepAlive: true,
+          // keepAlive: true,
           breadcrumb : [{ text: 'message.home', url: '/' }, { text: 'message.product', url: '/product/list' }]
         }
       },

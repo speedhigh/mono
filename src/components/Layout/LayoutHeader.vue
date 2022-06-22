@@ -31,12 +31,12 @@
           @click="toProduct"
         >
           <p>{{ t('message.product') }}</p>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" :class="{'transition duration-200 rotate-180' : isActive.product && $route.path !== '/product/list' }" viewBox="0 0 20 20" fill="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" :class="{'transition duration-200 rotate-180' : isActive.product && $route.meta.name !== 'Product' }" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
           </svg>
         </div>
         <div
-          v-if="isActive.product && $route.path !== '/product/list'"
+          v-if="isActive.product && $route.meta.name !== 'Product'"
           class="absolute top-[100px] bg-[rgba(255,255,255,0.9)] backdrop-blur-md shadow rounded-b-md inset-x-0 py-10 leading-none flex justify-center space-x-24"
           @mouseenter="isActive.product = true; keyword = ''"
         >
@@ -177,6 +177,9 @@ const isActive = reactive({
 // 产品信息
 const keyword = ref('')
 const clazzActive = ref(0)
+if(route.meta.name !== 'Product') { 
+  sessionStorage.setItem('clazzActive', 0)
+}
 const clazzNames = ref([])
 const clazzList = ref([])
 const getClazz = function() {
