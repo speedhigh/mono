@@ -35,16 +35,16 @@
       <div class="w-[1200px] h-full mx-auto flex items-center space-x-10">
         <h2 class="text-[1.38rem] font-bold">{{ t('message.searchTypeC') }}</h2>
         <div class="w-[37.5rem] h-12 border border-gray-400 bg-white rounded-3xl flex items-center px-2">
-          <input 
+          <input
             v-model="keyword"
-            type="text" 
-            placeholder="製品名とキーワードを入力してください" 
+            type="text"
+            placeholder="製品名とキーワードを入力してください"
             class="px-4 bg-white w-full h-full rounded-3xl"
             @keyup.enter.native="search(keyword)"
           >
-          <div 
+          <div
             class="w-8 h-8 bg-primary hover:bg-blue-400 rounded-full flex items-center justify-center cursor-pointer"
-            @click="search(keyword)"  
+            @click="search(keyword)"
           >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
@@ -100,7 +100,7 @@ import emitter from '/src/until/eventbus'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
-emitter.emit('changeLoadingState', false)
+setTimeout(() => emitter.emit('changeLoadingState', false), 150)
 
 const keyword = ref(sessionStorage.getItem('keyword') ? sessionStorage.getItem('keyword') : '')
 // 获取类别

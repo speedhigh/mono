@@ -1,8 +1,8 @@
 <template>
-  <div class="w-full text-center">
+  <div v-loading="showLoading" class="w-full text-center">
     <slot v-if="localList.length > 0" :list="localList" />
     <el-empty 
-      v-if="localList.length === 0 && !loading" 
+      v-if="localList.length === 0 && !showLoading" 
       description=" " 
       class="mt-36 text-sm text-gray-500"
     >
@@ -27,7 +27,6 @@ import { ref, watch } from 'vue'
 import { pickBy } from 'lodash'
 import api from '/src/api/index.js'
 import { useI18n } from 'vue-i18n'
-import emitter from '/src/until/eventbus'
 export default {
   props: {
     size: {
@@ -45,14 +44,12 @@ export default {
   },
   setup(props) {
     const { t } = useI18n()
-    const loading = ref(true)
-    // emitter.emit('changeLoadingState', true)
+    const showLoading = ref(true)
     const currentPage = ref(1)
     const localList = ref([])
     const total = ref(0)
     const askApi = function(more = true) {
-      loading.value = true
-      emitter.emit('changeLoadingState', true)
+      showLoading.value = true
       let newParams = {}
       if(!more) {
         currentPage.value = 1
@@ -66,20 +63,18 @@ export default {
           total.value = 0
           localList.value = []
         }
-        loading.value = false
-        emitter.emit('changeLoadingState', false)
+        showLoading.value = false
       })
     }
     askApi()
     watch(() => props.params, (value) => {
-      console.log('vvv', value)
       askApi(false)
     }, {
       deep: true
     })
     return {
       t,
-      loading,
+      showLoading,
       currentPage,
       localList,
       total,

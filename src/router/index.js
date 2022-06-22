@@ -210,7 +210,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if(to.path !== '/product/list' && to.meta.name !== 'About') {
+  if(to.meta.name !== 'About') {
     emitter.emit('changeLoadingState', true)
   }
   // keep-alive

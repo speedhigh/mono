@@ -3,18 +3,18 @@
     <el-carousel
       v-if="swiperList[0]"
       ref="swiperRef" 
-      trigger="click" 
+      trigger="click"
       height="540px"
       indicator-position="none"
       :arrow="swiperList.length > 1 ? 'hover' : 'never'"
       @change="changeSwiper"
     >
       <el-carousel-item v-for="item in swiperList" :key="item.id">
-        <img 
-          :src="item.thumbnail" 
-          :alt="item.title" 
-          width="100%" 
-          height="540" 
+        <img
+          :src="item.thumbnail"
+          :alt="item.title"
+          width="100%"
+          height="540"
           class="w-full h-full cursor-pointer"
           @click="jumpTo(item.href, item.keyword)"
         >
@@ -28,7 +28,7 @@
         v-for="i in swiperList.length"
         :key="i"
         class="w-12 h-2 rounded-sm cursor-pointer"
-        :class="active + 1 === i ? 'bg-primary' : 'bg-gray-100 opacity-60'"
+        :class="active + 1 === i ? 'bg-primary' : 'bg-gray-300 opacity-40'"
         @click="setActive(i)"
       />
     </div>
