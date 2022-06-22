@@ -78,7 +78,7 @@
               <div v-for="(item, index) in clazzNames" :key="index" class="cursor-pointer">
                 <p
                   :class="clazzActive === index ? 'text-2xl font-bold border-b-4 border-primary leading-10 pb-1' : 'text-lg leading-10 pb-1'"
-                  @click="clazzActive = index"
+                  @click="changeClazz(index)"
                 >
                   {{ item }}
                 </p>
@@ -157,7 +157,7 @@
 
 
 <script setup>
-import { ref, reactive, watch, getCurrentInstance } from 'vue'
+import { ref, reactive, getCurrentInstance } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { Search } from '@element-plus/icons-vue'
 import api from '/src/api/index.js'
@@ -176,7 +176,7 @@ const isActive = reactive({
 
 // 产品信息
 const keyword = ref('')
-const clazzActive = ref(sessionStorage.getItem("clazzActive") ? +sessionStorage.getItem("clazzActive") : 0)
+const clazzActive = ref(0)
 const clazzNames = ref([])
 const clazzList = ref([])
 const getClazz = function() {
@@ -195,16 +195,19 @@ if(sessionStorage.getItem("clazzList") && sessionStorage.getItem("clazzNames")) 
 } else {
   getClazz()
 }
-watch(() => clazzActive.value, value => {
-  sessionStorage.setItem('clazzActive', value)
-})
+const changeClazz = function(index) {
+  clazzActive.value = index
+  sessionStorage.setItem('clazzActive', index)
+}
 const toProduct = function() {
+  sessionStorage.setItem('clazzActive', 0)
   sessionStorage.removeItem("keyword")
   sessionStorage.removeItem("seriesname")
   sessionStorage.setItem('clazzname', clazzNames.value[0])
   router.push('/product/list')
 }
 const toSearch = function(keyword) {
+  sessionStorage.setItem('clazzActive', 0)
   sessionStorage.removeItem("clazzname")
   sessionStorage.removeItem("seriesname")
   sessionStorage.setItem('keyword', keyword)

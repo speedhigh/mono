@@ -29,7 +29,6 @@
         </div>
       </div>
     </section>
-
     <!-- 搜索 -->
     <section class="h-[7.5rem] bg-gray-100">
       <div class="w-[1200px] h-full mx-auto flex items-center space-x-10">

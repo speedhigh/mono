@@ -1,6 +1,6 @@
 <template>
   <section class="mt-32">
-    <h2 class="text-6xl text-center">{{ t('message.nmnTitle') }}</h2>
+    <h2 class="text-4xl text-center">{{ t('message.nmnTitle') }}</h2>
     <div class="mt-16 w-full flex h-96">
       <!-- 高純度 99.9% -->
       <div
