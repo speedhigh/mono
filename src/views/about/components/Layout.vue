@@ -38,18 +38,6 @@
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
             </svg>
           </div>
-          <!-- 沿革历史
-          <div 
-            class="w-[13.13rem] h-16 flex items-center px-2.5 border-b cursor-pointer hover:bg-gray-50"
-            :class="{ 'bg-gray-100': $route.path === '/about/history' }"
-            @click="$router.replace('/about/history')"
-          >
-            <p class="text-sm">{{ t('message.aboutHistory') }}</p>
-            <svg xmlns="http://www.w3.org/2000/svg" class="ml-auto h-5 w-5 text-primary" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
-            </svg>
-          </div>
-          -->
           <!-- 公司资质 -->
           <div 
             class="w-[13.13rem] h-16 flex items-center px-2.5 border-b cursor-pointer hover:bg-gray-50"
@@ -61,18 +49,17 @@
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
             </svg>
           </div>
-          <!-- 招聘信息 
+          <!-- 联系我们 -->
           <div 
             class="w-[13.13rem] h-16 flex items-center px-2.5 border-b cursor-pointer hover:bg-gray-50"
-            :class="{ 'bg-gray-100': $route.path === '/about/recruit' }"
-            @click="$router.replace('/about/recruit')"
+            :class="{ 'bg-gray-100': $route.path === '/about/contact' }"
+            @click="$router.replace('/about/contact')"
           >
-            <p class="text-sm">{{ t('message.aboutusC') }}</p>
+            <p class="text-sm">{{ t('message.contactUs') }}</p>
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-auto h-5 w-5 text-primary" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
             </svg>
           </div>
-          -->
         </div>
       </div>
     </div>

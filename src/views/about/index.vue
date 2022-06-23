@@ -16,7 +16,7 @@
         class="w-full h-[13.75rem] rounded-lg cursor-pointer hover:opacity-80 relative"
         @click="$router.push('/about/company')"
       >
-        <img :src="aboutA" alt="公司简介" width="372" height="220" class="w-full h-full rounded-lg">
+        <img :src="aboutA" :alt="t('message.aboutCompany')" width="372" height="220" class="w-full h-full rounded-lg">
         <div class="absolute bottom-0 inset-x-0 w-full h-[50px] rounded-b-lg bg-[rgba(0,0,0,0.5)]">
           <p class="text-lg text-white text-center leading-[50px]">{{ t('message.aboutCompany') }}</p>
         </div>
@@ -26,7 +26,7 @@
         class="w-full h-[13.75rem] rounded-lg cursor-pointer hover:opacity-80 relative border" 
         @click="$router.push('/about/business')"
       >
-        <img :src="aboutB" alt="管理理念" width="372" height="220" class="w-full h-full rounded-lg">
+        <img :src="aboutB" :alt="t('message.aboutBusiness')" width="372" height="220" class="w-full h-full rounded-lg">
         <div class="absolute bottom-0 inset-x-0 w-full h-[50px] rounded-b-lg bg-[rgba(0,0,0,0.5)]">
           <p class="text-lg text-white text-center leading-[50px]">{{ t('message.aboutBusiness') }}</p>
         </div>
@@ -36,7 +36,7 @@
         class="w-full h-[13.75rem] rounded-lg cursor-pointer hover:opacity-80 relative"
         @click="$router.push('/about/pharmacist')"
       >
-        <img :src="aboutC" alt="药剂师概述" width="372" height="220" class="w-full h-full rounded-lg">
+        <img :src="aboutC" :alt="t('message.aboutPharmacist')" width="372" height="220" class="w-full h-full rounded-lg">
         <div class="absolute bottom-0 inset-x-0 w-full h-[50px] rounded-b-lg bg-[rgba(0,0,0,0.5)]">
           <p class="text-lg text-white text-center leading-[50px]">{{ t('message.aboutPharmacist') }}</p>
         </div>
@@ -46,9 +46,19 @@
         class="w-full h-[13.75rem] rounded-lg cursor-pointer hover:opacity-80 relative"
         @click="$router.push('/about/aptitude')"
       >
-        <img :src="aboutD" alt="公司资质" width="372" height="220" class="w-full h-full rounded-lg object-cover">
+        <img :src="aboutD" :alt="t('message.aboutusB')" width="372" height="220" class="w-full h-full rounded-lg object-cover">
         <div class="absolute bottom-0 inset-x-0 w-full h-[50px] rounded-b-lg bg-[rgba(0,0,0,0.5)]">
           <p class="text-lg text-white text-center leading-[50px]">{{ t('message.aboutusB') }}</p>
+        </div>
+      </div>
+      <!-- 联系我们 -->
+      <div
+        class="w-full h-[13.75rem] rounded-lg cursor-pointer hover:opacity-80 relative"
+        @click="$router.push('/about/contact')"
+      >
+        <img :src="aboutE" :alt="t('message.contactUs')" width="372" height="220" class="w-full h-full rounded-lg object-cover">
+        <div class="absolute bottom-0 inset-x-0 w-full h-[50px] rounded-b-lg bg-[rgba(0,0,0,0.5)]">
+          <p class="text-lg text-white text-center leading-[50px]">{{ t('message.contactUs') }}</p>
         </div>
       </div>
     </div>
@@ -61,6 +71,7 @@ import aboutA from '/src/assets/images/about/about_a.webp'
 import aboutB from '/src/assets/images/about/about_b.webp'
 import aboutC from '/src/assets/images/about/about_c.webp'
 import aboutD from '/src/assets/images/about/about_d.webp'
+import aboutE from '/src/assets/images/about/about_e.webp'
 import emitter from '/src/until/eventbus'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()

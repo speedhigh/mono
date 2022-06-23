@@ -148,7 +148,10 @@
       </div>
     </div>
     <!-- 咨询 -->
-    <div class="ml-12 w-[7.5rem] h-[6.25rem] bg-primary hover:bg-blue-400 active:bg-primary text-white flex flex-col items-center justify-center space-y-3.5 cursor-pointer">
+    <div 
+      class="ml-12 w-[7.5rem] h-[6.25rem] bg-primary hover:bg-blue-400 active:bg-primary text-white flex flex-col items-center justify-center space-y-3.5 cursor-pointer"
+      @click="$router.push('/about/contact')"
+    >
       <svg class="w-6 h-6" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="m64 448 832-320-128 704-446.08-243.328L832 192 242.816 545.472 64 448zm256 512V657.024L512 768 320 960z"></path></svg>
       <p>{{ t('message.ask') }}</p>
     </div>

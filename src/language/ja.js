@@ -29,6 +29,7 @@ export default {
     aboutWeb: 'このサイトについて',
     infoSecurity: '情報セキュリティ基本方針',
     privacy: '個人情報保護方針（プライバシーポリシー）',
+    contactUs: 'お問い合わせ',
     // home
     newsPublish: 'ニュースリリース',
     nmnTitle: 'NMN製品の特徴',

@@ -28,6 +28,7 @@ export default {
     aboutWeb: '关于本网站',
     infoSecurity: '信息安全基本方针',
     privacy: '隐私政策',
+    contactUs: '联系我们',
     // home
     newsPublish: '新闻发布',
     nmnTitle: 'NMN产品特点',
