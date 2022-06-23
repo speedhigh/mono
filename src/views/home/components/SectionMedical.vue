@@ -45,6 +45,7 @@ const router = useRouter()
 const clazzNames = ref(JSON.parse(sessionStorage.getItem("clazzNames")))
 
 const toProduct = function(active) {
+  sessionStorage.removeItem("seriesname")
   sessionStorage.setItem('clazzActive', active)
   sessionStorage.setItem('clazzname', clazzNames.value[active])
   router.push('/product/list')

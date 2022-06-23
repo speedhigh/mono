@@ -55,7 +55,14 @@ api.get('/index/getLunBo').then((res) => {
   swiperList.value = res.data.data
 })
 
-const jumpTo = function(url, index) {
+const clazzNames = ref(JSON.parse(sessionStorage.getItem("clazzNames")))
+
+const jumpTo = function(url, active) {
+  if(url === '/product/list') {
+    sessionStorage.removeItem("seriesname")
+    sessionStorage.setItem('clazzActive', active)
+    sessionStorage.setItem('clazzname', clazzNames.value[active])
+  }
   router.push(url)
 }
 </script>
