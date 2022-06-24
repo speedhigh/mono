@@ -201,7 +201,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if(to.meta.name !== 'About') {
+  if(to.meta.name !== 'About' && to.meta.name !== 'Home') {
     emitter.emit('changeLoadingState', true)
   }
   // keep-alive

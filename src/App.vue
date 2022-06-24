@@ -21,6 +21,7 @@ import { ref } from 'vue'
 import emitter from '/src/until/eventbus'
 emitter.on('changeLoadingState', (state) => showLoadingPage.value = state)
 const showLoadingPage = ref(false)
+emitter.emit('changeLoadingState', true)
 </script>
 
 <style>
