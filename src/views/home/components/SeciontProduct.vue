@@ -87,7 +87,14 @@ const { t } = useI18n()
 
 // 首页展示的药品
 const productList = ref([])
-api.get('/index/getProduct').then((res) => {
-  productList.value = res.data.data
-})
+if(!sessionStorage.getItem("productList")) {
+  api.get('/index/getProduct').then((res) => {
+    if(res.data.code === 20000) {
+      productList.value = res.data.data
+      sessionStorage.setItem("productList", JSON.stringify(res.data.data))
+    }  
+  })
+} else {
+  productList.value = JSON.parse(sessionStorage.getItem("productList"))
+}
 </script>

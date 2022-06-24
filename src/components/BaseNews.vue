@@ -25,7 +25,14 @@ const props = defineProps({
 })
 const { t } = useI18n()
 const newsList = ref([])
-api.get('/index/getArticle').then((res) => {
-  newsList.value = res.data.data
-})
+if(!sessionStorage.getItem("newsList")) {
+  api.get('/index/getArticle').then((res) => {
+    if(res.data.code === 20000) {
+      newsList.value = res.data.data
+      sessionStorage.setItem("newsList", JSON.stringify(res.data.data))
+    }
+  })
+} else {
+  newsList.value = JSON.parse(sessionStorage.getItem("newsList"))
+}
 </script>

@@ -6,7 +6,7 @@
       <img :src="BannerA" width="100%" height="1000" alt="背景图1" class="absolute inset-0 w-full h-full">
       <div class="relative w-full h-full pt-48 pb-32 text-center text-white">
         <img :src="ProductA" alt="药品图片A" width="1036" height="312" class="mx-auto">
-        <h2 class="mt-[5.88rem] text-5xl font-bold">生命の幸 · 幸はNMNにある</h2>
+        <h2 class="mt-[5.88rem] text-5xl font-bold">生命の幸 · 幸はNMN</h2>
         <div class="mt-10 text-lg font-bold leading-[1.88rem]">
           <p>NMN純度と吸収効率、持続時間にこだわった</p>
           <p>国産NMNサプリメント</p>
@@ -41,7 +41,7 @@
         </div>
         <div class="mt-32 flex items-end space-x-[25.81rem] px-28">
           <div 
-            class="flex-shrink-0 w-[37.5rem] h-[31.25rem] bg-white py-8 pl-11"
+            class="flex-shrink-0 w-[37.5rem] h-[31.25rem] bg-white py-8 pl-11 rounded-2xl"
             style="box-shadow: 0rem 2rem 1rem 0rem #C7C7C7"  
           >
             <h3 class="text-3xl font-bold text-center">独特な品質保証システム</h3>

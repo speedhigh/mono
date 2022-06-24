@@ -51,9 +51,16 @@ const setActive = function(index) {
   swiperRef.value.setActiveItem(index-1)
 }
 const swiperList = ref([])
-api.get('/index/getLunBo').then((res) => {
-  swiperList.value = res.data.data
-})
+if(!sessionStorage.getItem("swiperList")) {
+  api.get('/index/getLunBo').then((res) => {
+    if(res.data.code === 20000) {
+      swiperList.value = res.data.data
+      sessionStorage.setItem("swiperList", JSON.stringify(res.data.data))
+    }
+  })
+} else {
+  swiperList.value = JSON.parse(sessionStorage.getItem("swiperList"))
+}
 
 const clazzNames = ref(JSON.parse(sessionStorage.getItem("clazzNames")))
 
