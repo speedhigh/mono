@@ -20,7 +20,10 @@
         </div>
       </div>
       <!-- 会社の資質 -->
-      <div class="w-full h-full cursor-pointer relative hover:opacity-80" @click="$router.push('/about/aptitude')">
+      <div
+        class="w-full h-full cursor-pointer relative hover:opacity-80"
+        @click="$router.push('/about/aptitude')"
+      >
         <img :src="AboutB" alt="会社の資質" width="623" height="280" class="w-full h-full shadow">
         <div class="absolute bottom-0 inset-x-0 h-[50px] bg-[rgba(255,255,255,0.5)] w-full flex items-center px-3 space-x-2.5">
           <div class="w-5 h-5 bg-primary rounded-full">
@@ -32,7 +35,10 @@
         </div>
       </div>
       <!-- 経営理念 -->
-      <div class="w-full h-full cursor-pointer relative hover:opacity-80" @click="$router.push('/about/business')">
+      <div
+        class="w-full h-full cursor-pointer relative hover:opacity-80"
+        @click="$router.push('/about/business')"
+      >
         <img :src="AboutC" alt="経営理念" width="623" height="280" class="w-full h-full shadow">
         <div class="absolute bottom-0 inset-x-0 h-[50px] bg-[rgba(255,255,255,0.5)] w-full flex items-center px-3 space-x-2.5">
           <div class="w-5 h-5 bg-primary rounded-full">

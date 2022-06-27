@@ -9,7 +9,10 @@
       :arrow="swiperList.length > 1 ? 'hover' : 'never'"
       @change="changeSwiper"
     >
-      <el-carousel-item v-for="item in swiperList" :key="item.id">
+      <el-carousel-item 
+        v-for="item in swiperList"
+        :key="item.id"
+      >
         <img
           :src="item.thumbnail"
           :alt="item.title"

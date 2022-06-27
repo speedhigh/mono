@@ -4,9 +4,9 @@
       <p class="text-lg">{{ t('message.productTitleA') }} \</p>
       <h2 class="mt-4 text-[2.13rem] text-primary">{{ t('message.productTitleB') }}</h2>
       <div class="mt-14 grid grid-cols-3 gap-x-[2.63rem] gap-y-10">
-        <div 
+        <div
           v-for="item in productList"
-          :key="item.id" 
+          :key="item.id"
           class="h-[12.5rem] rounded-lg relative cursor-pointer hover:shadow-lg hover:shadow-primary/50 hover:opacity-80"
           @click="$router.push('/product/detail/' + item.id)"
         >
@@ -23,10 +23,10 @@
       </div>
       <!-- btn -->
       <div class="text-center">
-        <el-button 
+        <el-button
           size="large"
-          type="primary" 
-          class="mt-14 min-w-[10rem] h-11" 
+          type="primary"
+          class="mt-14 min-w-[10rem] h-11"
           @click="$router.push('/product/list')"
         >
           {{ t('message.seeAll') }}
