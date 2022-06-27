@@ -5,7 +5,7 @@
     <section class="w-full h-[62.5rem] relative">
       <img :src="BannerA" width="100%" height="1000" alt="背景图1" class="absolute inset-0 w-full h-full">
       <div class="relative w-full h-full pt-48 pb-32 text-center text-white">
-        <img :src="ProductA" alt="药品图片A" width="1036" height="312" class="mx-auto">
+        <img :src="ProductA" alt="药品图片A" width="336" height="312" class="mx-auto w-[336px] h-[312px]">
         <h2 class="mt-[5.88rem] text-5xl font-bold">生命の幸 · 幸はNMN</h2>
         <div class="mt-10 text-lg font-bold leading-[1.88rem]">
           <p>NMN純度と吸収効率、持続時間にこだわった</p>
@@ -40,26 +40,20 @@
           </div>
         </div>
         <div class="mt-32 flex items-end space-x-[25.81rem] px-28">
-          <div 
-            class="flex-shrink-0 w-[37.5rem] h-[31.25rem] bg-white py-8 pl-11 rounded-2xl"
-            style="box-shadow: 0rem 2rem 1rem 0rem #C7C7C7"  
-          >
+          <div class="flex-shrink-0 w-[37.5rem] h-[30rem] bg-white p-12 rounded-2xl shadow-xl">
             <h3 class="text-3xl font-bold text-center">独特な品質保証システム</h3>
             <div class="mt-7 mx-auto w-[4.25rem] h-1.5 rounded bg-gray-900" />
-            <div class="mt-8 text-lg leading-9">
+            <div class="mt-10 text-lg leading-10">
               <p>· 特殊技術“低毒素製法”で安全性を確保</p>
               <p>· 自社独自に、熱に強いNMN原料を製造</p>
               <p>· ロット毎に原料真正テスト実施</p>
               <p>· ヒト臨床検査実施</p>
               <p>· アンチエイジングドック™結果検証済</p>
               <p>· 急性毒性試験・放射能検査の安全性検査済</p>
-              <p>· 安全品質マネジメント規格「GMP＆ISO認証」ダブル取得</p>
-              <p>· 偽変防止ソリューション「M-Tag®」搭載</p>
-              <p>· 米国食品医薬局の基準をクリア</p>
             </div>
           </div>
           <div class="flex-shrink-0 text-center">
-            <img :src="PorductB" alt="药品图片B" width="350" height="384" class="w-[21.88rem] h-96">
+            <img :src="PorductB" alt="药品图片B" width="350" height="311" class="w-[350px] h-[311px]">
             <button class="mt-11 w-40 h-10 rounded-3xl border border-gray-900 font-bold hover:border-2">詳細を表示</button>
           </div>
         </div>
@@ -148,8 +142,8 @@
       <h2 class="text-5xl font-bold text-center">お客様の声</h2>
       <div class="mt-[3.75rem] w-[1200px] mx-auto grid grid-cols-2 gap-x-[3.75rem] gap-y-12">
         <div 
-          v-for="item in commentList" 
-          :key="item.id" 
+          v-for="item in commentList"
+          :key="item.id"
           class="w-full h-[13.75rem] rounded-[1.88rem] bg-gray-100 pt-7 pb-5 pl-8 pr-10"
         >
           <div class="flex items-center">

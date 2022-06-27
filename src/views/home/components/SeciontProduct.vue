@@ -23,7 +23,14 @@
       </div>
       <!-- btn -->
       <div class="text-center">
-        <el-button type="primary" class="mt-14 min-w-[10rem] h-11" size="large" @click="$router.push('/product/list')">{{ t('message.seeAll') }}</el-button>
+        <el-button 
+          size="large"
+          type="primary" 
+          class="mt-14 min-w-[10rem] h-11" 
+          @click="$router.push('/product/list')"
+        >
+          {{ t('message.seeAll') }}
+        </el-button>
       </div>
     </div>
     <!-- triangle1 -->
