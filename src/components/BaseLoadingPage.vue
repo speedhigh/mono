@@ -23,7 +23,7 @@ div>span {
   border-bottom: 10px solid #4799FF;
   border-top: 10px solid #4799FF;
   opacity: 0.6;
-  animation: rotateleft 1.25s infinite ease-in-out;
+  animation: rotateleft 0.8s infinite ease-in-out;
   position: absolute;
 }
 
@@ -39,7 +39,7 @@ div>span~span {
   border-left: 10px solid #4799FF;
   border-right: 10px solid #4799FF;
   opacity: 0.6;
-  animation: rotateright 1.25s infinite ease-in-out;
+  animation: rotateright 0.8s infinite ease-in-out;
   position: absolute;
 }
 

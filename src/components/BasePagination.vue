@@ -27,6 +27,7 @@ import { ref, watch } from 'vue'
 import { pickBy } from 'lodash'
 import api from '/src/api/index.js'
 import { useI18n } from 'vue-i18n'
+import emitter from '/src/until/eventbus'
 export default {
   props: {
     size: {
@@ -65,6 +66,9 @@ export default {
         }
         showLoading.value = false
       })
+      setTimeout(() => {
+        emitter.emit('changeLoadingState', false)
+      }, 100)
     }
     askApi()
     watch(() => props.params, (value) => {
@@ -80,6 +84,8 @@ export default {
       total,
       askApi,
       handleCurrentChange(page) {
+        window.scrollTo({ top: 0, behavior: "instant" })
+        emitter.emit('changeLoadingState', true)
         askApi()
       }
     }

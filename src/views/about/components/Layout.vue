@@ -63,7 +63,7 @@
         </div>
       </div>
     </div>
-    <div class="flex-grow">
+    <div class="flex-grow min-h-[70vh]">
       <router-view />
     </div>
   </div>
@@ -71,5 +71,7 @@
 
 <script setup>
 import { useI18n } from 'vue-i18n'
+import emitter from '/src/until/eventbus'
 const { t } = useI18n()
+emitter.emit('changeLoadingState', false)
 </script>

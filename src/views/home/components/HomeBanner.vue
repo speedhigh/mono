@@ -1,8 +1,8 @@
 <template>
-  <div class="relative">
+  <div class="relative h-[540px]">
     <el-carousel
       v-if="swiperList[0]"
-      ref="swiperRef" 
+      ref="swiperRef"
       trigger="click"
       height="540px"
       indicator-position="none"
