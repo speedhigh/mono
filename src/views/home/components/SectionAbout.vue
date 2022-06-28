@@ -8,7 +8,10 @@
     </div>
     <div class="mt-14 grid grid-cols-3 gap-x-[1.13rem] h-[17.5rem]">
       <!-- HSD国際株式会社概要 -->
-      <div class="w-full h-full cursor-pointer relative hover:opacity-80" @click="$router.push('/about/company')">
+      <div 
+        class="w-full h-full cursor-pointer relative hover:opacity-80"
+        @click="$router.push('/about/company')"
+      >
         <img :src="AboutA" alt="HSD国際株式会社概要" width="623" height="280" class="w-full h-full shadow">
         <div class="absolute bottom-0 inset-x-0 h-[50px] bg-[rgba(255,255,255,0.5)] w-full flex items-center px-3 space-x-2.5">
           <div class="w-5 h-5 bg-primary rounded-full">

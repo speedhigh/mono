@@ -64,8 +64,8 @@ const setActive = function(index) {
 }
 
 const options = reactive({
-  autoPlay: true,
-  width: '100%', //播放器高度
+  // autoPlay: true,
+  width: '100%', //播放器宽度
   height: '700px', //播放器高度
   color: "#4799FF", //主题色
   control: true, //是否显示控制器

@@ -6,8 +6,8 @@
       <img :src="BannerA" width="100%" height="1000" alt="背景图1" class="absolute inset-0 w-full h-full">
       <div class="relative w-full h-full pt-48 pb-32 text-center text-white">
         <!-- <img :src="ProductA" alt="药品图片A" width="336" height="312" class="mx-auto w-[336px] h-[312px]"> -->
-        <div class="flex justify-center">
-          <vue3VideoPlay v-bind="options" class="shadow-lg" />
+        <div class="flex justify-center cursor-pointer">
+          <vue3VideoPlay v-bind="options" class="shadow-lg cursor-pointer" />
         </div>
         <h2 class="mt-[5.88rem] text-5xl font-bold">生命の幸 · 幸はNMN</h2>
         <div class="mt-10 text-lg font-bold leading-[1.88rem]">
@@ -150,7 +150,14 @@
           class="w-full h-[13.75rem] rounded-[1.88rem] bg-gray-100 pt-7 pb-5 pl-8 pr-10"
         >
           <div class="flex items-center">
-            <svg v-for="i in 5" :key="i" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" :class="i > item.star ? 'text-gray-300' : 'text-[#FCBF02]'" viewBox="0 0 20 20" fill="currentColor">
+            <svg 
+              v-for="i in 5" :key="i"
+              class="h-5 w-5" 
+              :class="i > item.star ? 'text-gray-300' : 'text-[#FCBF02]'"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20" 
+              fill="currentColor"
+            >
               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
             </svg>
           </div>
@@ -160,7 +167,12 @@
             <img :src="Avatar" alt="光大健康" width="39" height="36" class="flex-shrink-0 w-9 h-9 rounded-full">
             <div class="text-sm">
               <p>光大健康</p>
-              <p class="text-primary hover:underline cursor-pointer" @click="viewDetail('http://www.guangdajiankang.com')">www.guangdajiankang.com</p>
+              <p 
+                class="text-primary hover:underline cursor-pointer" 
+                @click="viewDetail('http://www.guangdajiankang.com')"
+              >
+                www.guangdajiankang.com
+              </p>
             </div>
           </div>
         </div>
@@ -190,7 +202,7 @@ window.scrollTo({ top: 0, behavior: "instant" })
 const options = reactive({
   width: '555px', //播放器高度
   height: '312px', //播放器高度
-  color: "#4799FF", //主题色
+  color: '#4799FF', //主题色
   control: false, //是否显示控制器
   title: '', //视频名称
   src: '', //视频源
@@ -201,7 +213,7 @@ if(sessionStorage.getItem("swiperList")) {
   options.src = JSON.parse(sessionStorage.getItem("swiperList"))[0].href
 } else {
   options.title = '视频'
-  options.src = 'https://yuyihui-re.oss-cn-beijing.aliyuncs.com/NMN.mp4'
+  options.src = 'https://yuyihui-re.oss-cn-beijing.aliyuncs.com/NMN.webm'
 }
 
 const commentList = ref([])
