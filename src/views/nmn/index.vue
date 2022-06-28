@@ -5,7 +5,10 @@
     <section class="w-full h-[62.5rem] relative">
       <img :src="BannerA" width="100%" height="1000" alt="背景图1" class="absolute inset-0 w-full h-full">
       <div class="relative w-full h-full pt-48 pb-32 text-center text-white">
-        <img :src="ProductA" alt="药品图片A" width="336" height="312" class="mx-auto w-[336px] h-[312px]">
+        <!-- <img :src="ProductA" alt="药品图片A" width="336" height="312" class="mx-auto w-[336px] h-[312px]"> -->
+        <div class="flex justify-center">
+          <vue3VideoPlay v-bind="options" class="shadow-lg" />
+        </div>
         <h2 class="mt-[5.88rem] text-5xl font-bold">生命の幸 · 幸はNMN</h2>
         <div class="mt-10 text-lg font-bold leading-[1.88rem]">
           <p>NMN純度と吸収効率、持続時間にこだわった</p>
@@ -167,7 +170,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 import api from '/src/api/index.js'
 import BannerA from '/src/assets/images/nmn/banner-a.webp'
 import ProductA from '/src/assets/images/nmn/product_a.webp'
@@ -183,6 +186,23 @@ import Avatar from '/src/assets/images/nmn/avatar.png'
 import emitter from '/src/until/eventbus'
 
 window.scrollTo({ top: 0, behavior: "instant" })
+
+const options = reactive({
+  width: '555px', //播放器高度
+  height: '312px', //播放器高度
+  color: "#4799FF", //主题色
+  control: false, //是否显示控制器
+  title: '', //视频名称
+  src: '', //视频源
+})
+
+if(sessionStorage.getItem("swiperList")) {
+  options.title = JSON.parse(sessionStorage.getItem("swiperList"))[0].title
+  options.src = JSON.parse(sessionStorage.getItem("swiperList"))[0].href
+} else {
+  options.title = '视频'
+  options.src = 'https://yuyihui-re.oss-cn-beijing.aliyuncs.com/NMN.mp4'
+}
 
 const commentList = ref([])
 api.get('/comment/getList').then((res) => {
