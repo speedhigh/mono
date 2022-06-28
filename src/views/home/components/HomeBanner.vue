@@ -5,6 +5,7 @@
       ref="swiperRef"
       trigger="click"
       height="540px"
+      :autoplay="false"
       indicator-position="none"
       :arrow="swiperList.length > 1 ? 'hover' : 'never'"
       @change="changeSwiper"
@@ -13,7 +14,17 @@
         v-for="item in swiperList"
         :key="item.id"
       >
+        <div 
+          v-if="item.keyword === '视频'"
+          class="relative w-full h-full"
+        >
+          <video autoplay class="w-full h-full relative">
+            <source :src="item.href" type="video/mp4">
+            <span class="absolute inset-0 w-full h-full bg-[rgba(0,0,0,0.6)]"></span>
+          </video>
+        </div>
         <img
+          v-else
           :src="item.thumbnail"
           :alt="item.title"
           width="100%"
