@@ -16,7 +16,7 @@
       >
         <div 
           v-if="item.keyword === '视频'"
-          class="relative w-full h-full flex justify-center"
+          class="relative w-full h-full flex justify-center items-center"
         >
           <vue3VideoPlay v-bind="options" />
         </div>
@@ -66,7 +66,7 @@ const setActive = function(index) {
 const options = reactive({
   autoPlay: true,
   width: '100%', //播放器高度
-  height: '540px', //播放器高度
+  height: '700px', //播放器高度
   color: "#4799FF", //主题色
   control: true, //是否显示控制器
   title: '', //视频名称

@@ -173,7 +173,7 @@
 import { ref, reactive } from 'vue'
 import api from '/src/api/index.js'
 import BannerA from '/src/assets/images/nmn/banner-a.webp'
-import ProductA from '/src/assets/images/nmn/product_a.webp'
+// import ProductA from '/src/assets/images/nmn/product_a.webp'
 import BannerB from '/src/assets/images/nmn/banner-b.webp'
 import PorductB from '/src/assets/images/nmn/product-b.webp'
 import BannerC from '/src/assets/images/nmn/banner-c.webp'
