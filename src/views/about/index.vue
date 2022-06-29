@@ -23,7 +23,7 @@
       </div>
       <!-- 经营理念 -->
       <div
-        class="w-full h-[13.75rem] rounded-lg cursor-pointer hover:opacity-80 relative border" 
+        class="w-full h-[13.75rem] rounded-lg cursor-pointer hover:opacity-80 relative border"
         @click="$router.push('/about/business')"
       >
         <img :src="aboutB" :alt="t('message.aboutBusiness')" width="372" height="220" class="w-full h-full rounded-lg">
