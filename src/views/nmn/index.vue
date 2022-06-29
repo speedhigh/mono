@@ -4,7 +4,7 @@
     <!--  生命之幸 | 幸好在NMN上 -->
     <section class="w-full h-[62.5rem] relative">
       <img :src="BannerA" width="100%" height="1000" alt="背景图1" class="absolute inset-0 w-full h-full">
-      <div class="relative w-full h-full pt-48 pb-32 text-center text-white">
+      <div class="relative w-full h-full py-24 text-center text-white">
         <!-- <img :src="ProductA" alt="药品图片A" width="336" height="312" class="mx-auto w-[336px] h-[312px]"> -->
         <div class="flex justify-center cursor-pointer">
           <vue3VideoPlay v-bind="options" class="shadow-lg cursor-pointer" />
@@ -200,10 +200,10 @@ import emitter from '/src/until/eventbus'
 window.scrollTo({ top: 0, behavior: "instant" })
 
 const options = reactive({
-  width: '555px', //播放器高度
-  height: '312px', //播放器高度
+  width: 'auto', //播放器高度
+  height: '430px', //播放器高度
   color: '#4799FF', //主题色
-  control: false, //是否显示控制器
+  control: true, //是否显示控制器
   title: '', //视频名称
   src: '', //视频源
 })
