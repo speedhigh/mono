@@ -162,17 +162,12 @@
             </svg>
           </div>
           <p class="mt-3 font-bold">{{ item.name }}</p>
-          <p class="mt-4 line-2 h-[52.2px] leading-[1.63rem]">{{ item.content }}</p>
-          <div class="mt-4 flex items-center space-x-2">
-            <img :src="Avatar" alt="光大健康" width="39" height="36" class="flex-shrink-0 w-9 h-9 rounded-full">
+          <div v-html="item.content" class="mt-4 line-2 h-[52.2px] leading-[1.63rem]" />
+          <div class="mt-4 flex items-center space-x-2 cursor-pointer" @click="viewDetail(item.href)">
+            <img :src="item.thumbnail" :alt="item.name" width="36" height="36" class="flex-shrink-0 w-9 h-9 rounded-full object-cover">
             <div class="text-sm">
-              <p>光大健康</p>
-              <p 
-                class="text-primary hover:underline cursor-pointer" 
-                @click="viewDetail('http://www.guangdajiankang.com')"
-              >
-                www.guangdajiankang.com
-              </p>
+              <p>詳細の表示</p>
+              <p class="text-primary hover:underline">{{ item.href }}</p>
             </div>
           </div>
         </div>
@@ -185,7 +180,6 @@
 import { ref, reactive } from 'vue'
 import api from '/src/api/index.js'
 import BannerA from '/src/assets/images/nmn/banner-a.webp'
-// import ProductA from '/src/assets/images/nmn/product_a.webp'
 import BannerB from '/src/assets/images/nmn/banner-b.webp'
 import PorductB from '/src/assets/images/nmn/product-b.webp'
 import BannerC from '/src/assets/images/nmn/banner-c.webp'
@@ -194,7 +188,6 @@ import BtnBlue from '/src/assets/images/nmn/btn-blue.png'
 import BtnYellow from '/src/assets/images/nmn/btn-yellow.png'
 import BannerD from '/src/assets/images/nmn/banner-d.webp'
 import BannerE from '/src/assets/images/nmn/banner-e.webp'
-import Avatar from '/src/assets/images/nmn/avatar.png'
 import emitter from '/src/until/eventbus'
 
 window.scrollTo({ top: 0, behavior: "instant" })
