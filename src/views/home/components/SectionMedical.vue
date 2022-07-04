@@ -3,10 +3,10 @@
     <!-- 福祉用具販売事業 -->
     <div class="w-full flex space-x-9">
       <div
-        class="w-[36.25rem] h-[18.75rem] flex-shrink-0 rounded-lg py-5 pl-28 pr-24"
+        class="w-[36.25rem] h-[18.75rem] flex-shrink-0 rounded-lg"
         style="box-shadow: 0rem 0rem 1rem 0rem #E6E6E6"
       >
-        <img :src="MedicalA" width="372" height="260" alt="福祉用具販売事業" class="w-full h-full object-cover">
+        <img :src="MedicalA" width="580" height="300" alt="福祉用具販売事業" class="rounded-lg">
       </div>
         <div class="w-[36.25rem] h-[18.75rem] flex-shrink-0 pt-4">
         <p class="text-lg">{{ t('message.productTitleA') }} \</p>
@@ -24,10 +24,10 @@
         <el-button type="primary" class="mt-6 min-w-[10rem] h-11" size="large" @click="toProduct(1)">{{ t('message.seeAll') }}</el-button>
       </div>
       <div
-        class="w-[36.25rem] h-[18.75rem] flex-shrink-0 rounded-lg py-5 pl-28 pr-24"
+        class="w-[36.25rem] h-[18.75rem] flex-shrink-0 rounded-lg"
         style="box-shadow: 0rem 0rem 1rem 0rem #E6E6E6"
       >
-        <img :src="MedicalB" width="372" height="260" alt="私たち医療機器事業部は" class="w-full h-full object-cover">
+        <img :src="MedicalB" width="580" height="300" alt="私たち医療機器事業部は" class="rounded-lg">
       </div>
     </div>
   </section>

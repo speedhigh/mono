@@ -66,7 +66,7 @@ const routes = [
         component: () => import('../views/product/detail.vue'),
         meta: {
           name: 'Product',
-          keepAlive: true,
+          // keepAlive: true,
           breadcrumb : [{ text: 'message.home', url: '/' }, { text: 'message.product', url: '/product/list' }, { text: 'message.productDtl', url: '/product/detail/:id' }]
         }
       }

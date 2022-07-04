@@ -2,7 +2,7 @@
   <main>
     <section class="px-[25.5rem] border-b-[0.5rem] border-b-primary">
       <div class="py-20 flex justify-center space-x-[3.75rem]">
-        <img :src="info.thumbnail" :alt="info.title" width="402" height="402" class="flex-shrink-0 rounded w-[402px] h-[402px]">
+        <img :src="info.image" :alt="info.title" width="402" height="402" class="flex-shrink-0 rounded w-[402px] h-[402px]">
         <div class="flex-grow">
           <button class="h-10 border border-primary rounded leading-9 text-primary text-center px-4 cursor-default">{{ info.series }}</button>
           <h1 class="mt-7 text-[2rem] font-bold line-1">{{ info.title }}</h1>

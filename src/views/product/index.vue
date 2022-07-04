@@ -64,7 +64,7 @@
             <div v-for="item in slotProps.list" :key="item.id">
               <div class="rounded-xl border border-gray-50 w-full h-96 pt-6 pb-5 px-10 shadow-md">
                 <img
-                  :src="item.thumbnail"
+                  :src="item.image"
                   :alt="item.title"
                   width="180"
                   height="180"
