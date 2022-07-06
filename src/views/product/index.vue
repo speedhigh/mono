@@ -5,7 +5,7 @@
       <div class="flex items-start space-x-12">
         <p class="flex-shrink-0 text-[1.38rem] font-bold">{{ t('message.searchTypeB') }}</p>
         <div class="-mt-3 w-full">
-          <div class="flex items-end space-x-10 border-b w-full">
+          <div v-if="clazzNames" class="flex items-end space-x-10 border-b w-full">
             <div v-for="(item, index) in clazzNames" :key="index" class="cursor-pointer">
               <p
                 :class="params.clazzname === item ? 'text-2xl font-bold border-b-4 border-primary leading-10 pb-1' : 'text-lg leading-10 pb-1'"
@@ -15,7 +15,7 @@
               </p>
             </div>
           </div>
-          <div class="mt-6 w-full flex items-center flex-wrap">
+          <div v-if="clazzList.length > 0" class="mt-6 w-full flex items-center flex-wrap">
             <button
               v-for="(series, i) in clazzList[clazzActive].seriesnames"
               :key="i"
@@ -96,6 +96,7 @@
 <script setup>
 import { ref } from 'vue'
 import emitter from '/src/until/eventbus'
+import api from '/src/api/index.js'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
@@ -104,8 +105,24 @@ setTimeout(() => emitter.emit('changeLoadingState', false), 150)
 const keyword = ref(sessionStorage.getItem('keyword') ? sessionStorage.getItem('keyword') : '')
 // 获取类别
 const clazzActive = ref(sessionStorage.getItem("clazzActive") ? +sessionStorage.getItem("clazzActive") : 0)
-const clazzNames = ref(JSON.parse(sessionStorage.getItem("clazzNames")) ? JSON.parse(sessionStorage.getItem("clazzNames")) : [])
-const clazzList = ref(JSON.parse(sessionStorage.getItem("clazzList")) ? JSON.parse(sessionStorage.getItem("clazzList")) : [])
+const clazzNames = ref([])
+const clazzList = ref([])
+const getClazz = function() {
+  api.get('/product/getClazz').then((res) => {
+    if(res.data.code === 20000) {
+      clazzNames.value = res.data.data.map(item => item.clazzname)
+      clazzList.value = res.data.data
+      sessionStorage.setItem("clazzList", JSON.stringify(res.data.data))
+      sessionStorage.setItem("clazzNames", JSON.stringify(clazzNames.value))
+    }
+  })
+}
+if(sessionStorage.getItem("clazzList") && sessionStorage.getItem("clazzNames")) {
+  clazzNames.value = JSON.parse(sessionStorage.getItem("clazzNames"))
+  clazzList.value = JSON.parse(sessionStorage.getItem("clazzList"))
+} else {
+  getClazz()
+}
 const params = ref({
   keyword: sessionStorage.getItem('keyword') ? sessionStorage.getItem('keyword') : '',
   clazzname: sessionStorage.getItem('clazzname') ? sessionStorage.getItem('clazzname') : '',
